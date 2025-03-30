@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 14:50:24 by ematon            #+#    #+#             */
-/*   Updated: 2025/03/30 14:53:20 by ematon           ###   ########.fr       */
+/*   Updated: 2025/03/30 15:00:50 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	say_loudly(char *str)
 int main(int argc, char **argv)
 {
 	if (argc == 1)
-		std::cout << "caca";
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
 	else
 	{
 		for (int i = 1; argv[i]; i++)
