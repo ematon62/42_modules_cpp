@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/30 14:50:24 by ematon            #+#    #+#             */
-/*   Updated: 2025/03/30 21:34:39 by ematon           ###   ########.fr       */
+/*   Created: 2025/04/01 11:34:17 by ematon            #+#    #+#             */
+/*   Updated: 2025/04/01 20:16:46 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "Contact.hpp"
 
-void	say_loudly(char *str)
+Contact::Contact()
 {
-	for (int j = 0; str[j]; j++)
-		std::cout << (char)std::toupper(str[j]);
+	infos.first_name = "undefined";
+	infos.last_name = "undefined";
+	infos.nickname = "undefined";
+	infos.phone_number = "undefined";
+	infos.secret = "undefined";
 }
 
-int main(int argc, char **argv)
+Contact::Contact(t_contact_info c_info)
 {
-	if (argc == 1)
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-	else
-	{
-		for (int i = 1; argv[i]; i++)
-			say_loudly(argv[i]);
-	}
-	std::cout << std::endl;
+	infos = c_info;
 }

@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/30 14:50:24 by ematon            #+#    #+#             */
-/*   Updated: 2025/03/30 21:34:39 by ematon           ###   ########.fr       */
+/*   Created: 2025/04/01 11:12:02 by ematon            #+#    #+#             */
+/*   Updated: 2025/04/01 20:29:20 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Contact.hpp"
 #include <iostream>
+#define MAX_CONTACTS 8
+#define INVALID_FIELD "Contact info field cannot be empty"
 
-void	say_loudly(char *str)
+class PhoneBook
 {
-	for (int j = 0; str[j]; j++)
-		std::cout << (char)std::toupper(str[j]);
-}
+	public:
+		PhoneBook();
+		void			Add();
+		void			Search();
 
-int main(int argc, char **argv)
-{
-	if (argc == 1)
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-	else
-	{
-		for (int i = 1; argv[i]; i++)
-			say_loudly(argv[i]);
-	}
-	std::cout << std::endl;
-}
+	private:
+		unsigned int	nb_contacts;
+		Contact			contacts[MAX_CONTACTS];
+		t_contact_info	GetContactInfo();
+};

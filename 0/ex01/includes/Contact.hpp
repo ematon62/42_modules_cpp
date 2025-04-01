@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/30 14:50:24 by ematon            #+#    #+#             */
-/*   Updated: 2025/03/30 21:34:39 by ematon           ###   ########.fr       */
+/*   Created: 2025/04/01 11:17:04 by ematon            #+#    #+#             */
+/*   Updated: 2025/04/01 20:25:31 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include <string>
 
-void	say_loudly(char *str)
-{
-	for (int j = 0; str[j]; j++)
-		std::cout << (char)std::toupper(str[j]);
-}
+const std::string infos[] = {"First name:", "Last name:", "Nickname:", \
+				"Phone number:", "Secret:"};
 
-int main(int argc, char **argv)
+typedef struct ContactInfo
 {
-	if (argc == 1)
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-	else
-	{
-		for (int i = 1; argv[i]; i++)
-			say_loudly(argv[i]);
-	}
-	std::cout << std::endl;
-}
+	std::string first_name;
+	std::string last_name;
+	std::string nickname;
+	std::string phone_number;
+	std::string secret;
+}	t_contact_info;
+
+
+class Contact
+{
+	public:
+		Contact();
+		Contact(t_contact_info c_info);
+		t_contact_info infos;
+};

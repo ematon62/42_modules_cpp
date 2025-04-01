@@ -1,9 +1,12 @@
-NAME := megaphone
+NAME := phonebook
 CXX := c++
 
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98
+INC_FLAGS := -Iincludes
+CXXFLAGS := -Wall -Wextra -Werror $(INC_FLAGS) -std=c++98
 
-SRCS := megaphone.cpp
+SRCS := srcs/main.cpp \
+		srcs/PhoneBook.cpp \
+		srcs/Contact.cpp
 
 OBJS := $(SRCS:.cpp=.o)
 
@@ -11,7 +14,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@printf "Compiling binary...\n"
-	@$(CXX) $(CXXFLAGS) $^ -o $@
+	@$(CXX) $(CXXFLAGS) $(OBJS) -o $@
 	@printf "Done.\n"
 
 clean:
@@ -24,6 +27,6 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re 
+.PHONY: all clean fclean re
 
 .SILENT: $(OBJS)
