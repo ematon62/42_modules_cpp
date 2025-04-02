@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 11:35:14 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/01 20:25:15 by ematon           ###   ########.fr       */
+/*   Updated: 2025/04/02 21:43:34 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 
 #define INPUT_MSG "Please enter either of these commands: ADD/SEARCH/EXIT"
 #define ERR_MSG "Warning: EOF detected"
+
+bool is_whitespace(std::string str)
+{
+	for (unsigned int i = 0; i <= str.size(); i++)
+	{
+		if (str[i] && !(str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r')))
+			return (false);
+	}
+	return (true);
+}
 
 int main(void)
 {
@@ -24,16 +34,19 @@ int main(void)
 	{
 		std::cout << INPUT_MSG << std::endl;
 		if (!std::getline(std::cin, input))
-		{
-			std::cerr << ERR_MSG << std::endl;
-			return (1);
-		}
+			break;
 		if (input == "ADD")
-			pb.Add();
-		else if (input == "SEARCH")
-			pb.Search();
+		{
+			if (pb.Add())
+				break;
+		}
+		else if (input == "SEARCH" && pb.nb_contacts)
+		{
+			if (pb.Search())
+				break;
+		}
 		else if (input == "EXIT")
-			break ;
+			break;
 	}
 	return (0);
 }

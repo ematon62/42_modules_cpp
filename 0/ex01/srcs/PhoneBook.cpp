@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 11:34:30 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/01 20:46:54 by ematon           ###   ########.fr       */
+/*   Updated: 2025/04/02 21:58:40 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,58 +17,61 @@ PhoneBook::PhoneBook()
 	nb_contacts = 0;
 }
 
-t_contact_info PhoneBook::GetContactInfo()
+std::string	PhoneBook::FitIntoColumn(std::string str)
 {
-	t_contact_info	contact_info;
-	std::string		input;
-	unsigned int	i;
+	std::string smaller_str;
 
-	i = 0;
-	while (i < 5)
+	smaller_str = str;
+	if (smaller_str.length() > 10)
 	{
-		std::cout << infos[i];
-		getline(std::cin, input);
-		while (!input[0])
-		{
-			std::cerr << INVALID_FIELD << std::endl;
-			std::cout << infos[i];
-			getline(std::cin, input);
-		}
-		switch(i)
-		{
-			case 0:
-				contact_info.first_name = input;
-			case 1:
-				contact_info.last_name = input;
-			case 2:
-				contact_info.nickname = input;
-			case 3:
-				contact_info.phone_number = input;
-			case 4:
-				contact_info.secret = input;
-		}
-		i++;
+		smaller_str[9] = '.';
+		for (int i = 10; smaller_str[i]; i++)
+			smaller_str[i] = '\0';
 	}
-	return (contact_info);
+	return (smaller_str);
 }
 
-void PhoneBook::Add()
+void PhoneBook::PrintColumns(int i)
 {
-	t_contact_info	c_info;
+	std::cout << std::setw(10) << i << "|";
+	std::cout << std::setw(10) << FitIntoColumn(contacts[i].infos.first_name) << "|";
+	std::cout << std::setw(10) << FitIntoColumn(contacts[i].infos.last_name) << "|";
+	std::cout << std::setw(10) << FitIntoColumn(contacts[i].infos.nickname) << std::endl;
+}
 
-	c_info = PhoneBook::GetContactInfo();
-	PhoneBook::contacts[PhoneBook::nb_contacts % 8] = Contact(c_info);
+bool PhoneBook::IsValidIndex(std::string input, int n)
+{
+	return (input.size() == 1 && input[0] >= '0'
+			&& input[0] < '8' && (input[0] - 48) < n);
+}
+
+int PhoneBook::Add()
+{
+	Contact	new_contact;
+
+	new_contact.GetContactInfo();
+	if (!new_contact.infos.initialized)
+		return (1);
+	PhoneBook::contacts[PhoneBook::nb_contacts % 8] = new_contact;
 	PhoneBook::nb_contacts += 1;
+	return (0);
 }
 
-void PhoneBook::Search(void)
+int PhoneBook::Search()
 {
-	unsigned int	i;
+	std::string input;
+	int			index;
 
-	i = 0;
-	while (i <= nb_contacts - 1 && i <= 7)
+	for (unsigned int i = 0; i < nb_contacts && i < 8; i++)
+		PrintColumns(i);
+	input[0] = 0;
+	while (!IsValidIndex(input, nb_contacts))
 	{
-		std::cout << contacts[i].infos.first_name << std::endl;
-		i++;
+		std::cout << INDEX_QUERY << std::endl;
+		if (!getline(std::cin, input))
+			return (1);
 	}
+	index = input[0] - 48;
+	contacts[index].PrintContactInfo();
+	return (0);
 }
