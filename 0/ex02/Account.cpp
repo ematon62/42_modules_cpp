@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 10:37:54 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/04 10:32:07 by ematon           ###   ########.fr       */
+/*   Updated: 2025/04/04 15:29:38 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void Account::makeDeposit( int deposit )
 	std::cout << ";deposit:" << deposit;
 
 	_amount += deposit;
+	_totalAmount += deposit;
 	_nbDeposits += 1;
 	_totalNbDeposits += 1;
 
@@ -98,6 +99,7 @@ bool Account::makeWithdrawal( int withdrawal )
 	{
 		std::cout << ";withdrawal:" << withdrawal;
 		_amount -= withdrawal;
+		_totalAmount -= withdrawal;
 		_nbWithdrawals += 1;
 		_totalNbWithdrawals += 1;
 		std::cout << ";amount:" << checkAmount();
