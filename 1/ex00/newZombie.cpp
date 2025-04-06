@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 17:58:08 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/06 21:33:57 by ematon           ###   ########.fr       */
+/*   Updated: 2025/04/06 21:49:07 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 Zombie* newZombie(std::string name)
 {
-	return (new Zombie(name));
+	return (new (std::nothrow) Zombie(name));
 }

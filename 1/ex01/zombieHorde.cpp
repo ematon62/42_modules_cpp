@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/04 17:44:23 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/06 22:03:23 by ematon           ###   ########.fr       */
+/*   Created: 2025/04/06 21:47:11 by ematon            #+#    #+#             */
+/*   Updated: 2025/04/06 22:24:35 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
+#include "Zombie.hpp"
 
-class Zombie
+Zombie* zombieHorde(int N, std::string name)
 {
-	public:
-		Zombie(std::string name);
-		~Zombie();
-		void announce(void);
+	Zombie *horde;
 
-	private:
-		std::string name;
-};
-
-Zombie* newZombie( std::string name );
-void 	randomChump( std::string name );
+	if (N < 1)
+	{
+		std::cerr << "Must be at least 1 zombie to make a horde\n";
+		return (NULL);
+	}
+	horde = new Zombie[N];
+	if (!horde)
+	{
+		std::cerr << "new: Could not allocated memory\n";
+		return (NULL);
+	}
+	for (int i = 0; i < N; i ++)
+	{
+		horde[i].set_name(name);
+	}
+	return (horde);
+}
