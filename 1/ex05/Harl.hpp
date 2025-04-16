@@ -6,7 +6,7 @@
 /*   By: grossviche <grossviche@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 13:21:38 by grossviche        #+#    #+#             */
-/*   Updated: 2025/04/16 14:35:12 by grossviche       ###   ########.fr       */
+/*   Updated: 2025/04/16 15:13:08 by grossviche       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ class Harl
         Harl();
         ~Harl();
         void (Harl::*complaints[4])();
+        std::string  levels[4];
         void complain(std::string level);
 };

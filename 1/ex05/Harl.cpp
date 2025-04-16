@@ -6,7 +6,7 @@
 /*   By: grossviche <grossviche@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 13:24:52 by grossviche        #+#    #+#             */
-/*   Updated: 2025/04/16 14:43:52 by grossviche       ###   ########.fr       */
+/*   Updated: 2025/04/16 15:18:18 by grossviche       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ Harl::Harl()
     this->complaints[1] = &Harl::info;
     this->complaints[2] = &Harl::warning;
     this->complaints[3] = &Harl::error;
+    this->levels[0] = "DEBUG";
+    this->levels[1] = "INFO";
+    this->levels[2] = "WARNING";
+    this->levels[3] = "ERROR";
 }
 
 Harl::~Harl()
@@ -48,5 +52,13 @@ void Harl::error()
 
 void Harl::complain(std::string level)
 {
+    for (int i = 0; i < 4; i++)
+    {
+        if (level == this->levels[i])
+        {
+            (this->*(complaints[i]))();
+            return;
+        }
+    }
     (this->*(complaints[level.size() % 4]))();
 }
