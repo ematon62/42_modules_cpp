@@ -20,7 +20,7 @@ Fixed::Fixed(const int v)
 Fixed::Fixed(const float v)
 {
 	std::cout << "Float constructor called\n";
-	this->_value = (int)(v * (1 << this->_nbBits));
+	this->_value = roundf(v * (1 << this->_nbBits));
 }
 
 Fixed& Fixed::operator=(const Fixed &a)
