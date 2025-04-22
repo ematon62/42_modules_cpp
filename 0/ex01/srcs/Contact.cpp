@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 11:34:17 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/02 21:56:51 by ematon           ###   ########.fr       */
+/*   Updated: 2025/04/22 15:48:05 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void Contact::GetContactInfo()
 {
 	std::string		input;
 
-	infos.initialized = false;
+	initialized = false;
 	std::cout << FIELD_QUERY << std::endl;
 	for (unsigned int i = 0; i < 5; i++)
 	{
@@ -50,7 +50,7 @@ void Contact::GetContactInfo()
 				infos.secret = input;
 		}
 	}
-	infos.initialized = true;
+	initialized = true;
 }
 
 void	Contact::PrintContactInfo()
@@ -60,4 +60,25 @@ void	Contact::PrintContactInfo()
 	std::cout << infos.nickname << std::endl;
 	std::cout << infos.phone_number << std::endl;
 	std::cout << infos.secret << std::endl;
+}
+
+std::string	Contact::FitIntoColumn(std::string str)
+{
+	std::string smaller_str;
+
+	smaller_str = str;
+	if (smaller_str.length() > 10)
+	{
+		smaller_str[9] = '.';
+		for (int i = 10; smaller_str[i]; i++)
+			smaller_str[i] = '\0';
+	}
+	return (smaller_str);
+}
+
+void	Contact::PrintColumns()
+{
+	std::cout << std::setw(10) << FitIntoColumn(infos.first_name) << "|";
+	std::cout << std::setw(10) << FitIntoColumn(infos.last_name) << "|";
+	std::cout << std::setw(10) << FitIntoColumn(infos.nickname) << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 11:17:04 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/02 21:55:01 by ematon           ###   ########.fr       */
+/*   Updated: 2025/04/22 15:47:51 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct ContactInfo
 	std::string nickname;
 	std::string phone_number;
 	std::string secret;
-	bool		initialized;
 }	t_contact_info;
 
 class Contact
@@ -35,6 +34,11 @@ class Contact
 		Contact();
 		void GetContactInfo();
 		void PrintContactInfo();
+		void PrintColumns();
+		std::string	FitIntoColumn(std::string str);
+		bool initialized;
+	
+	private:
 		t_contact_info infos;
 };
 
