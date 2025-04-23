@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grossviche <grossviche@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 13:21:38 by grossviche        #+#    #+#             */
-/*   Updated: 2025/04/16 15:13:08 by grossviche       ###   ########.fr       */
+/*   Updated: 2025/04/23 11:38:38 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string>
 #include <iostream>
+#pragma once
 
 #define DEBUG "I love having extra bacon for my \
 7XL-double-cheese-triple-pickle-special-\
