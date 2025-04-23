@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grossviche <grossviche@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 21:37:00 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/16 16:16:22 by grossviche       ###   ########.fr       */
+/*   Updated: 2025/04/23 11:28:45 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int main(int argc, char **argv)
 	
 	if (argc != 2)
 	{
-		std::cout << "./Harlfilter [LEVEL]\n";
+		std::cout << "./harlfilter [LEVEL]\n";
 		return (1);
 	}
 
