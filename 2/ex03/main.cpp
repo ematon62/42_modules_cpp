@@ -5,30 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/23 11:40:51 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/24 09:25:53 by ematon           ###   ########.fr       */
+/*   Created: 2025/04/23 13:48:41 by ematon            #+#    #+#             */
+/*   Updated: 2025/04/24 16:48:58 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
-#include <limits.h>
+#include "Point.hpp"
 
 int main( void )
 {
-	Fixed a;
-	Fixed const b( 10);
-	Fixed const c(42.42f);
-	Fixed const d(b);
-	a = Fixed( 1234.4321f);
+	Point a;
+	Point b(1, 1);
+	Point c(2, 2);
 
-	std::cout << "a is " << a << std::endl;
-	std::cout << "b is " << b << std::endl;
-	std::cout << "c is " << c << std::endl;
-	std::cout << "d is " << d << std::endl;
-
-	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
-	return 0;
+	Point d(02000.2f, 02000.2f);
+	std::cout << bsp(a, b, c, d) << std::endl; 
 }

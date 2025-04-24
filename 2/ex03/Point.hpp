@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/23 13:48:41 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/23 13:51:25 by ematon           ###   ########.fr       */
+/*   Created: 2025/04/23 13:53:24 by ematon            #+#    #+#             */
+/*   Updated: 2025/04/24 16:18:48 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+#pragma once
 
-int main( void ) {
-	Fixed a;
-	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+class Point
+{
+	public:
+		Point();
+		Point(const float x, const float y);
+		Point(const Point &p);
+		Point& operator=(const Point &p);
+		~Point();
 
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << Fixed::max( a, b ) << std::endl;
-	return 0;
-}
+		const Fixed GetX() const;
+		const Fixed GetY() const ;
+	private:
+		const Fixed _x;
+		const Fixed _y;
+};
+
+bool bsp( Point const a, Point const b, Point const c, Point const point);
