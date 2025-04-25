@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 11:40:27 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/24 09:52:44 by ematon           ###   ########.fr       */
+/*   Updated: 2025/04/25 12:16:42 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,32 +32,32 @@ Fixed::~Fixed() {}
 
 bool Fixed::operator>(const Fixed &a)
 {
-	return (a.toFloat() > this->toFloat());
+	return (this->toFloat() > a.toFloat() );
 }
 
 bool Fixed::operator<(const Fixed &a)
 {
-	return (a.toFloat() < this->toFloat());
+	return (this->toFloat() < a.toFloat() );
 }
 
 bool Fixed::operator>=(const Fixed &a)
 {
-	return (a.toFloat() >= this->toFloat());
+	return (this->toFloat() >= a.toFloat() );
 }
 
 bool Fixed::operator<=(const Fixed &a)
 {
-	return (a.toFloat() <= this->toFloat());
+	return (this->toFloat() <= a.toFloat() );
 }
 
 bool Fixed::operator==(const Fixed &a)
 {
-	return (a.toFloat() == this->toFloat());
+	return (this->toFloat() == a.toFloat() );
 }
 
 bool Fixed::operator!=(const Fixed &a)
 {
-	return (a.toFloat() != this->toFloat());
+	return (this->toFloat() != a.toFloat() );
 }
 
 Fixed Fixed::operator+(const Fixed &a)
@@ -68,7 +68,7 @@ Fixed Fixed::operator+(const Fixed &a)
 
 Fixed Fixed::operator-(const Fixed &a)
 {
-	Fixed b(a.toFloat() - this->toFloat());
+	Fixed b(this->toFloat() - a.toFloat());
 	return b;
 }
 
@@ -80,7 +80,7 @@ Fixed Fixed::operator*(const Fixed &a)
 
 Fixed Fixed::operator/(const Fixed &a)
 {
-	Fixed b(a.toFloat() / this->toFloat());
+	Fixed b(this->toFloat() / a.toFloat());
 	return b;
 }
 
@@ -132,12 +132,12 @@ const Fixed& Fixed::max(const Fixed &a, const Fixed &b)
 
 int Fixed::toInt() const
 {
-        return (this->getRawBits() >> this->_nbBits);
+    return (this->getRawBits() >> this->_nbBits);
 }
 
 float Fixed::toFloat() const
 {
-        return ((float)this->getRawBits() / (1 << this->_nbBits));
+    return ((float)this->getRawBits() / (1 << this->_nbBits));
 }
 
 int	Fixed::getRawBits() const

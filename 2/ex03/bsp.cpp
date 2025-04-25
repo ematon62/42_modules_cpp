@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 09:54:30 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/24 16:54:44 by ematon           ###   ########.fr       */
+/*   Updated: 2025/04/25 12:25:16 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,25 @@
 
 bool bsp( Point const a, Point const b, Point const c, Point const point)
 {
+	Fixed x(point.GetX());
+	Fixed y(point.GetY());
+	Fixed xa(a.GetX());
+	Fixed ya(a.GetY());
+	Fixed xb(b.GetX());
+	Fixed yb(b.GetY());
+	Fixed xc(c.GetX());
+	Fixed yc(c.GetY());
+
 	Fixed t;
 	Fixed p;
 
-	Fixed u(point.GetX().toFloat() - a.GetX().toFloat());
-	Fixed v(point.GetY().toFloat()- a.GetY().toFloat());
-	Fixed w(b.GetX().toFloat() - a.GetX().toFloat());
-	Fixed x(b.GetY().toFloat() - a.GetY().toFloat());
-	Fixed y(c.GetX().toFloat() - a.GetX().toFloat());
-	Fixed z(c.GetY().toFloat() - a.GetY().toFloat());
+	t = ((x - xa) * (yc - ya) - (y - ya) * (xc - xa))
+		/ ((xb - xa) * (yc - ya) - (yb - ya) * (xc - xa));
+	p = ((xb - xa) * (y - ya) - (yb - ya) * (x - xa))
+		/ ((xb - xa) * (yc - ya) - (yb - ya) * (xc - xa));
 
+	std::cout << t.toFloat() << std::endl;
+	std::cout << p.toFloat() << std::endl;
 	
-	float ft = t.toFloat();
-	float fp = p.toFloat();
-	std::cout << ft << std::endl;
-	std::cout << fp << std::endl;
-
-	return (fp >= 0 && ft >= 0 && (fp + ft <= 1));
+	return (t > Fixed(0) && p > Fixed(0) && (p + t < Fixed(1)));
 }
