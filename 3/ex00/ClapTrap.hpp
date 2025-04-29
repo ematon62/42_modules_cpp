@@ -6,7 +6,7 @@
 /*   By: grossviche <grossviche@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 17:19:16 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/29 10:48:54 by grossviche       ###   ########.fr       */
+/*   Updated: 2025/04/29 14:27:45 by grossviche       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ class ClapTrap
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
-		std::string getName();
-		int getHP();
-		int getEP();
-		int getATKDmg();
+		std::string getName() const;
+		int getHP() const;
+		int getEP() const;
+		int getATKDmg() const;
 
 	private:
 		std::string _name;

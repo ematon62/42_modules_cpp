@@ -6,7 +6,7 @@
 /*   By: grossviche <grossviche@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 17:31:54 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/29 10:50:25 by grossviche       ###   ########.fr       */
+/*   Updated: 2025/04/29 14:28:27 by grossviche       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,22 +104,22 @@ void ClapTrap::beRepaired(unsigned int amount)
 	}
 }
 
-std::string ClapTrap::getName()
+std::string ClapTrap::getName() const
 {
 	return (_name);
 }
 
-int ClapTrap::getHP()
+int ClapTrap::getHP() const
 {
 	return (_hit_points);
 }
 
-int ClapTrap::getEP()
+int ClapTrap::getEP() const
 {
 	return (_energy_points);
 }
 
-int ClapTrap::getATKDmg()
+int ClapTrap::getATKDmg() const
 {
 	return (_attack_damage);
 }

@@ -6,7 +6,7 @@
 /*   By: grossviche <grossviche@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 17:31:54 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/29 14:28:02 by grossviche       ###   ########.fr       */
+/*   Updated: 2025/04/29 16:35:47 by grossviche       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 ClapTrap::ClapTrap()
 {
 	std::cout << "ClapTrap default constructor called\n";
-	_name = "unknown";
-	_hit_points = 10;
-	_energy_points = 10;
-	_attack_damage = 0;
+	this->_name = "unknown";
+	this->_hit_points = 10;
+	this->_energy_points = 10;
+	this->_attack_damage = 0;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other)
 {
 	std::cout << "ClapTrap copy constructor called\n";
-	_name = other._name;
-	_hit_points = 10;
-	_energy_points = 10;
-	_attack_damage = 0;
+	this->_name = other._name;
+	this->_hit_points = 10;
+	this->_energy_points = 10;
+	this->_attack_damage = 0;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
@@ -50,10 +50,10 @@ ClapTrap::~ClapTrap()
 ClapTrap::ClapTrap(const std::string& name)
 {
 	std::cout << "ClaTrap overloaded constructor called\n";
-	_name = name;
-	_hit_points = 10;
-	_energy_points = 10;
-	_attack_damage = 0;
+	this->_name = name;
+	this->_hit_points = 10;
+	this->_energy_points = 10;
+	this->_attack_damage = 0;
 }
 
 void ClapTrap::attack(const std::string& target)
@@ -106,20 +106,20 @@ void ClapTrap::beRepaired(unsigned int amount)
 
 std::string ClapTrap::getName() const
 {
-	return (_name);
+	return (this->_name);
 }
 
 int ClapTrap::getHP() const
 {
-	return (_hit_points);
+	return (this->_hit_points);
 }
 
 int ClapTrap::getEP() const
 {
-	return (_energy_points);
+	return (this->_energy_points);
 }
 
 int ClapTrap::getATKDmg() const
 {
-	return (_attack_damage);
+	return (this->_attack_damage);
 }
