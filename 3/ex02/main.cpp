@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: grossviche <grossviche@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 17:19:16 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/29 10:21:19 by grossviche       ###   ########.fr       */
+/*   Created: 2025/04/24 18:00:13 by ematon            #+#    #+#             */
+/*   Updated: 2025/04/29 11:08:30 by grossviche       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
-#include <iostream>
 #include "ClapTrap.hpp"
-#pragma once
+#include "FragTrap.hpp"
 
-class ScavTrap : public ClapTrap
+int main(void)
 {
-	public:
-		ScavTrap();
-		ScavTrap(const ScavTrap& other);
-		ScavTrap& operator=(const ScavTrap& other);
-		~ScavTrap();
-		
-		ScavTrap(const std::string& name);
-		void attack(const std::string& target);
-		void guardGate();
-};
+	FragTrap binbin("binbin");
+	FragTrap jp;
+	jp = binbin;
+
+	jp.attack("maman");
+	jp.highFivesGuys();
+	jp.takeDamage(100);
+	std::cout << binbin.getEP() << std::endl;
+}
