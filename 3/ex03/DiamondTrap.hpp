@@ -6,7 +6,7 @@
 /*   By: grossviche <grossviche@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 14:24:46 by grossviche        #+#    #+#             */
-/*   Updated: 2025/04/29 16:40:00 by grossviche       ###   ########.fr       */
+/*   Updated: 2025/04/29 17:59:30 by grossviche       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ class DiamondTrap : public ScavTrap, public FragTrap
 		DiamondTrap(const std::string& name);
 		void attack(const std::string& name);
 		void whoAmI();
-		int getEP();
 	private:
 		std::string _name;
 };
