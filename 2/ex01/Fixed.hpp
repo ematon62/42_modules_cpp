@@ -6,13 +6,15 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 11:39:59 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/24 09:22:11 by ematon           ###   ########.fr       */
+/*   Updated: 2025/05/15 13:49:09 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FIXED_HPP
+#define FIXED_HPP
+
 #include <iostream>
 #include <cmath>
-#pragma once
 
 class Fixed
 {
@@ -35,3 +37,5 @@ class Fixed
 };
 
 std::ostream	&operator<<(std::ostream &str, const Fixed &a);
+
+#endif

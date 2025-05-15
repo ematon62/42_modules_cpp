@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 21:37:00 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/23 10:19:05 by ematon           ###   ########.fr       */
+/*   Updated: 2025/05/15 11:01:26 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main(void)
 {
 	Zombie *horde;
-	int N = 100;
+	int N = 5;
 	std::string name = "jeremy";
 
 	horde = zombieHorde(N, name);

@@ -6,13 +6,15 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 11:40:19 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/24 09:20:09 by ematon           ###   ########.fr       */
+/*   Updated: 2025/05/15 13:49:22 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FIXED_HPP
+#define FIXED_HPP
+
 #include <iostream>
 #include <cmath>
-#pragma once
 
 #define EPSILON 0.00390625f
 
@@ -56,3 +58,5 @@ class Fixed
 };
 
 std::ostream	&operator<<(std::ostream &str, const Fixed &a);
+
+#endif

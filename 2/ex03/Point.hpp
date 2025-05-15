@@ -6,12 +6,14 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 13:53:24 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/24 16:18:48 by ematon           ###   ########.fr       */
+/*   Updated: 2025/05/15 13:49:53 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef POINT_HPP
+#define POINT_HPP
+
 #include "Fixed.hpp"
-#pragma once
 
 class Point
 {
@@ -30,3 +32,5 @@ class Point
 };
 
 bool bsp( Point const a, Point const b, Point const c, Point const point);
+
+#endif

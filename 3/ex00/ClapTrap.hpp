@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grossviche <grossviche@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 17:19:16 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/29 14:27:45 by grossviche       ###   ########.fr       */
+/*   Updated: 2025/05/15 14:11:18 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef CLAPTRAP_HPP
+#define CLAPTRAP_HPP
+
 #include <string>
 #include <iostream>
-#pragma once
 
 class ClapTrap
 {
@@ -38,3 +40,5 @@ class ClapTrap
 		int			_attack_damage;
 		
 };
+
+#endif

@@ -6,12 +6,14 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:22:55 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/23 11:38:00 by ematon           ###   ########.fr       */
+/*   Updated: 2025/05/15 11:15:58 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef HUMAN_A
+#define HUMAN_A
+
 #include "Weapon.hpp"
-#pragma once
 
 class HumanA
 {
@@ -23,3 +25,5 @@ class HumanA
 		Weapon		&_weapon;
 		std::string _name;
 };
+
+#endif

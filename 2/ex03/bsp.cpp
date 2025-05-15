@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 09:54:30 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/25 12:25:16 by ematon           ###   ########.fr       */
+/*   Updated: 2025/05/15 14:03:56 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
 		/ ((xb - xa) * (yc - ya) - (yb - ya) * (xc - xa));
 	p = ((xb - xa) * (y - ya) - (yb - ya) * (x - xa))
 		/ ((xb - xa) * (yc - ya) - (yb - ya) * (xc - xa));
-
-	std::cout << t.toFloat() << std::endl;
-	std::cout << p.toFloat() << std::endl;
 	
 	return (t > Fixed(0) && p > Fixed(0) && (p + t < Fixed(1)));
 }

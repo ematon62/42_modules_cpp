@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 21:37:00 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/23 09:54:34 by ematon           ###   ########.fr       */
+/*   Updated: 2025/05/15 10:51:10 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ int main(void)
 	
 	new_guy = newZombie("guy");
 	new_dude = newZombie("dude");
-	new_dude->announce();
 	new_man = newZombie("man");
-	new_man->announce();
-	delete new_man;
-	if (!new_guy)
+	if (!new_guy || !new_dude || !new_man)
 	{
 		std::cerr << "new: Could not allocate memory\n";
 		return (1);
 	}
+	new_dude->announce();
+	new_man->announce();
+	delete new_man;
 	randomChump("chump");
 	new_guy->announce();
 	delete new_guy;

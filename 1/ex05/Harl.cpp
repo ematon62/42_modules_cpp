@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grossviche <grossviche@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 13:24:52 by grossviche        #+#    #+#             */
-/*   Updated: 2025/04/16 15:18:18 by grossviche       ###   ########.fr       */
+/*   Updated: 2025/05/15 11:26:59 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void Harl::complain(std::string level)
 {
     for (int i = 0; i < 4; i++)
     {
-        if (level == this->levels[i])
+        if (level == levels[i])
         {
             (this->*(complaints[i]))();
-            return;
+            return ;
         }
     }
     (this->*(complaints[level.size() % 4]))();

@@ -6,12 +6,14 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 08:33:03 by grossviche        #+#    #+#             */
-/*   Updated: 2025/04/23 11:44:20 by ematon           ###   ########.fr       */
+/*   Updated: 2025/05/15 13:48:55 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FIXED_HPP
+#define FIXED_HPP
+
 #include <iostream>
-#pragma once
 
 class Fixed
 {
@@ -28,3 +30,5 @@ class Fixed
         int              _value;
         static const int _nbBits = 8;
 };
+
+#endif

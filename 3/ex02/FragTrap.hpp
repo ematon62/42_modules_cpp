@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grossviche <grossviche@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 17:19:16 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/29 11:01:47 by grossviche       ###   ########.fr       */
+/*   Updated: 2025/05/15 14:12:40 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef FRAGTRAP_HPP
+#define FRAGTRAP_HPP
 
 #include <string>
 #include <iostream>
 #include "ClapTrap.hpp"
-#pragma once
 
 class FragTrap : public ClapTrap
 {
@@ -26,3 +28,5 @@ class FragTrap : public ClapTrap
 		FragTrap(const std::string& name);
 		void highFivesGuys();
 };
+
+#endif
