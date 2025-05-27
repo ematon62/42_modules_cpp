@@ -43,6 +43,20 @@
 		"numbers": "cpp",
 		"ostream": "cpp",
 		"stdexcept": "cpp",
-		"streambuf": "cpp"
+		"streambuf": "cpp",
+		"cstring": "cpp",
+		"ctime": "cpp",
+		"bitset": "cpp",
+		"chrono": "cpp",
+		"condition_variable": "cpp",
+		"ratio": "cpp",
+		"mutex": "cpp",
+		"ranges": "cpp",
+		"span": "cpp",
+		"sstream": "cpp",
+		"stop_token": "cpp",
+		"thread": "cpp",
+		"semaphore": "cpp",
+		"__nullptr": "cpp"
 	}
 }
