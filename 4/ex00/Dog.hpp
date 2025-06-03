@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
+#ifndef DOG_HPP
+#define DOG_HPP
+
 #include "Animal.hpp"
-#pragma once
 
 class Dog : public Animal
 {
@@ -20,8 +21,10 @@ class Dog : public Animal
 		Dog();
 		Dog(const Dog& other);
 		Dog& operator=(const Dog& other);
-		~Dog();
+		virtual ~Dog();
 
 		virtual void makeSound() const;
 		std::string getType() const;
 };
+
+#endif
