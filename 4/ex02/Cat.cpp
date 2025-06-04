@@ -18,7 +18,7 @@ Cat::Cat()
 	brain = new Brain();
 }
 
-Cat::Cat(const Cat& other) : Animal(other)
+Cat::Cat(const Cat& other) : AAnimal(other)
 {
 	type = other.type;
 	brain = new Brain();

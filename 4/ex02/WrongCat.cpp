@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                         :+:      :+:    :+:   */
+/*   WrongCat.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: grossviche <grossviche@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,57 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "WrongCat.hpp"
 
-Cat::Cat()
+WrongCat::WrongCat()
 {
-	type = "Cat";
-	brain = new Brain();
+	std::cout << "WrongCat default constructor called\n";
+	type = "WrongCat";
 }
 
-Cat::Cat(const Cat& other) : Animal(other)
+WrongCat::WrongCat(const WrongCat& other) : WrongAnimal(other)
 {
+	std::cout << "WrongCat copy constructor called\n";
 	type = other.type;
-	brain = new Brain();
-	if (brain)
-	{
-		for (int i = 0; i < 100; i++)
-			brain->changeNthIdea(other.brain->getNthIdea(i), i);
-	}
 }
 
-Cat& Cat::operator=(const Cat& other)
+WrongCat& WrongCat::operator=(const WrongCat& other)
 {
+	std::cout << "WrongCat overloaded assignment operator called\n";
 	if (this == &other)
 		return (*this);
 	this->type = other.type;
-	brain = new Brain();
-	if (brain)
-	{
-		for (int i = 0; i < 100; i++)
-			brain->changeNthIdea(other.brain->getNthIdea(i), i);
-	}
 	return (*this);
 }
 
-Cat::~Cat()
+WrongCat::~WrongCat()
 {
-	if (brain)
-		delete brain;
-	std::cout << "Cat destructor called\n";
+	std::cout << "WrongCat destructor called\n";
 }
 
-void Cat::makeSound() const
-{
-	std::cout << "Miaou\n";
-}
-
-std::string Cat::getType() const
+std::string WrongCat::getType() const
 {
 	return (type);
-}
-
-Brain* Cat::getBrainAddress() const
-{
-	return (brain);
 }

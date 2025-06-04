@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                         :+:      :+:    :+:   */
+/*   Dog.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: grossviche <grossviche@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "Dog.hpp"
 
-Cat::Cat()
+Dog::Dog()
 {
-	type = "Cat";
+	type = "Dog";
 	brain = new Brain();
 }
 
-Cat::Cat(const Cat& other) : Animal(other)
+Dog::Dog(const Dog& other) : AAnimal(other)
 {
 	type = other.type;
 	brain = new Brain();
@@ -29,7 +29,7 @@ Cat::Cat(const Cat& other) : Animal(other)
 	}
 }
 
-Cat& Cat::operator=(const Cat& other)
+Dog& Dog::operator=(const Dog& other)
 {
 	if (this == &other)
 		return (*this);
@@ -43,24 +43,24 @@ Cat& Cat::operator=(const Cat& other)
 	return (*this);
 }
 
-Cat::~Cat()
+Dog::~Dog()
 {
 	if (brain)
 		delete brain;
-	std::cout << "Cat destructor called\n";
+	std::cout << "Dog destructor called\n";
 }
 
-void Cat::makeSound() const
+void Dog::makeSound() const
 {
-	std::cout << "Miaou\n";
+	std::cout << "Oeuf\n";
 }
 
-std::string Cat::getType() const
+std::string Dog::getType() const
 {
 	return (type);
 }
 
-Brain* Cat::getBrainAddress() const
+Brain* Dog::getBrainAddress() const
 {
 	return (brain);
 }
