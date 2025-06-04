@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 17:41:19 by ematon            #+#    #+#             */
-/*   Updated: 2025/06/04 17:27:12 by ematon           ###   ########.fr       */
+/*   Created: 2025/06/04 17:26:26 by ematon            #+#    #+#             */
+/*   Updated: 2025/06/04 18:11:24 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-#define WRONGANIMAL_HPP
+#ifndef AMATERIA_HPP
+#define AMATERIA_HPP
 
 #include <string>
-#include <iostream>
+#include "ICharacter.hpp"
 
-class WrongAnimal
+class AMateria
 {
-	public:
-		WrongAnimal();
-		WrongAnimal(const WrongAnimal& other);
-		WrongAnimal& operator=(const WrongAnimal& other);
-		virtual ~WrongAnimal();
-
-		void makeSound() const;
-		std::string getType() const;
 	protected:
-		std::string type;
-};
+
+	public:
+		AMateria(std::string const & type);
+		std::string const & getType() const;
+		virtual AMateria* clone() const = 0;
+		virtual void use(ICharacter& target);
+}
 
 #endif
