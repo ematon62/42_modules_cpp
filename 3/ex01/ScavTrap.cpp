@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grossviche <grossviche@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 17:31:54 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/29 10:43:49 by grossviche       ###   ########.fr       */
+/*   Updated: 2025/06/05 11:53:54 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)
 
 void ScavTrap::attack(const std::string& target)
 {
-	if (_hit_points <= 0)
+	if (_hit_points == 0)
 		std::cout << "ScavTrap " << _name << " is too dead to attack\n";
-	else if (_energy_points <= 0)
+	else if (_energy_points == 0)
 		std::cout << "ScavTrap " << _name << " is too tired to attack "
 			<< target << std::endl;
 	else

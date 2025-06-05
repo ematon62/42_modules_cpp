@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grossviche <grossviche@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 17:31:54 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/29 14:28:02 by grossviche       ###   ########.fr       */
+/*   Updated: 2025/06/05 11:42:35 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ ClapTrap::ClapTrap(const std::string& name)
 
 void ClapTrap::attack(const std::string& target)
 {
-	if (_hit_points <= 0)
+	if (_hit_points == 0)
 		std::cout << "ClapTrap " << _name << " is too dead to attack\n";
-	else if (_energy_points <= 0)
+	else if (_energy_points == 0)
 		std::cout << "ClapTrap " << _name << " is too tired to attack "
 			<< target << std::endl;
 	else
@@ -73,11 +73,11 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	if (_hit_points < 0)
+	if (_hit_points == 0)
 		std::cout << "ClapTrap " << _name << " is already dead\n";
-	else if (_hit_points - amount <= 0)
+	else if (_hit_points <= amount)
 	{
-		_hit_points -= amount;
+		_hit_points = 0;
 		std::cout << "ClapTrap " << _name << " takes " << amount
 			<< " points of damage and is killed in the process\n";
 	}
@@ -91,9 +91,9 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (_hit_points <= 0)
+	if (_hit_points == 0)
 		std::cout << "ClapTrap " << _name << " is too dead to heal itself\n";
-	else if (_energy_points <= 0)
+	else if (_energy_points == 0)
 		std::cout << "ClapTrap " << _name << " is too tired to heal itself\n";
 	else
 	{

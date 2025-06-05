@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 17:19:16 by ematon            #+#    #+#             */
-/*   Updated: 2025/05/15 14:11:35 by ematon           ###   ########.fr       */
+/*   Updated: 2025/06/05 11:53:32 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ class ClapTrap
 		int getATKDmg() const;
 
 	protected:
-		std::string _name;
-		int			_hit_points;
-		int			_energy_points;
-		int			_attack_damage;
+		std::string		_name;
+		unsigned int	_hit_points;
+		unsigned int	_energy_points;
+		unsigned int	_attack_damage;
 		
 };
 
