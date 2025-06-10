@@ -37,8 +37,3 @@ WrongCat::~WrongCat()
 {
 	std::cout << "WrongCat destructor called\n";
 }
-
-std::string WrongCat::getType() const
-{
-	return (type);
-}

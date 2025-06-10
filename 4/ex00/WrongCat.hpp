@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 22:11:50 by ematon            #+#    #+#             */
-/*   Updated: 2025/06/03 22:15:14 by ematon           ###   ########.fr       */
+/*   Updated: 2025/06/10 09:44:05 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ class WrongCat : public WrongAnimal
 		WrongCat& operator=(const WrongCat& other);
 		virtual ~WrongCat();
 
-		std::string getType() const;
 	protected:
 		std::string type;
 };

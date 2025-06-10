@@ -24,7 +24,6 @@ class Cat : public Animal
 		virtual ~Cat();
 
 		virtual void makeSound() const;
-		std::string getType() const;
 };
 
 #endif

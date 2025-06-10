@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:09:04 by ematon            #+#    #+#             */
-/*   Updated: 2025/06/05 11:10:02 by ematon           ###   ########.fr       */
+/*   Updated: 2025/06/10 14:04:32 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,14 @@
 
 class Ice : public AMateria
 {
-	
+	public:
+		Ice();
+		Ice(const Ice& other);
+		Ice& operator=(const Ice& other);
+		virtual ~Ice();
+
+		virtual AMateria* clone() const;
+		virtual void use(ICharacter& target);
 };
 
 #endif

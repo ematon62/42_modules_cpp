@@ -24,7 +24,6 @@ class Dog : public Animal
 		virtual ~Dog();
 
 		virtual void makeSound() const;
-		std::string getType() const;
 };
 
 #endif
