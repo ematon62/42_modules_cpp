@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:30:45 by ematon            #+#    #+#             */
-/*   Updated: 2025/05/27 17:04:22 by ematon           ###   ########.fr       */
+/*   Updated: 2025/06/05 12:27:59 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ DiamondTrap::DiamondTrap(const DiamondTrap& other)
 {
 	std::cout << "DiamondTrap copy constructor called\n";
 	ClapTrap::_name = other._name + "_clap_name";
-	_hit_points = 100;
-	_energy_points = 50;
-	_attack_damage = 30;
+	_hit_points = other._hit_points;
+	_energy_points = other._energy_points;
+	_attack_damage = other._attack_damage;
 }
 
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other)
@@ -47,9 +47,9 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other)
 		return (*this);
 	ClapTrap::_name = other._name + "_clap_name";
 	_name = other._name;
-	_hit_points = 100;
-	_energy_points = 50;
-	_attack_damage = 30;
+	_hit_points = other._hit_points;
+	_energy_points = other._energy_points;
+	_attack_damage = other._attack_damage;
 	return (*this);
 }
 
