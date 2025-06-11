@@ -40,5 +40,5 @@ Dog::~Dog()
 
 void Dog::makeSound() const
 {
-	std::cout << "Oeuf\n";
+	std::cout << "\033[1;32mWouf\033[0m\n";
 }

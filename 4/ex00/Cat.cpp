@@ -40,5 +40,5 @@ Cat::~Cat()
 
 void Cat::makeSound() const
 {
-	std::cout << "Miaou\n";
+	std::cout << "\033[1;32mMiaou\033[0m\n";
 }

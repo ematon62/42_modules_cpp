@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 18:00:13 by ematon            #+#    #+#             */
-/*   Updated: 2025/06/04 16:27:10 by ematon           ###   ########.fr       */
+/*   Updated: 2025/06/11 21:24:38 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 int main(void)
 {
-	std::cout << "Allocation memory for array...";
+	std::cout << "\033[1;33mAllocation memory for array...\033[0m\n";
 	Animal* array[ARRAY_SIZE];
 	for (int i = 0; i < ARRAY_SIZE; i++)
 	{
@@ -31,19 +31,23 @@ int main(void)
 		if (!array[i])
 			return (1);
 	}
-	std::cout << "\nDestroying array elements...\n\n";
+	std::cout << "\033[1;33mDestroying array elements...\033[0m\n";
 	for (int j = 0; j < ARRAY_SIZE; j++)
 	{
 		delete array[j];
 	}
 
-	std::cout << "\nChecking for shallow copy:\n";
-	Dog jp;
+	std::cout << "\033[1;33mSetting and getting ideas...\033[0m\n";
+	Cat jp;
+	jp.getBrainAddress()->changeNthIdea("caca", 0);
+	std::cout << jp.getBrainAddress()->getNthIdea(0) << std::endl;
+	std::cout << &jp.getBrainAddress()->getNthIdea(0) << std::endl;
+
+	std::cout << "\033[1;33mChecking for shallow copy...\033[0m\n";
 	{
-		Dog as = jp;
+		Cat as;
+		as = jp;
 		std::cout << as.getBrainAddress()->getNthIdea(0) << std::endl;
 		std::cout << &as.getBrainAddress()->getNthIdea(0) << std::endl;
 	}
-	std::cout << jp.getBrainAddress()->getNthIdea(0) << std::endl;
-	std::cout << &jp.getBrainAddress()->getNthIdea(0) << std::endl;
 }

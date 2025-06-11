@@ -35,7 +35,7 @@ AAnimal::~AAnimal()
 
 void AAnimal::makeSound() const
 {
-	std::cout << "AAnimal sound\n";
+	std::cout << "\033[1;32mAAnimal sound\033[0m\n";
 }
 
 std::string AAnimal::getType() const

@@ -38,7 +38,7 @@ WrongAnimal::~WrongAnimal()
 
 void WrongAnimal::makeSound() const
 {
-	std::cout << "WrongAnimal sound\n";
+	std::cout << "\033[1;32mWrongAnimal sound\033[0m\n";
 }
 
 std::string WrongAnimal::getType() const

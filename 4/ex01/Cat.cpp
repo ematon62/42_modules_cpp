@@ -34,11 +34,13 @@ Cat& Cat::operator=(const Cat& other)
 	if (this == &other)
 		return (*this);
 	this->type = other.type;
-	brain = new Brain();
-	if (brain)
+	if (this->brain)
+		delete brain;
+	this->brain = new Brain();
+	if (this->brain)
 	{
 		for (int i = 0; i < 100; i++)
-			brain->changeNthIdea(other.brain->getNthIdea(i), i);
+			this->brain->changeNthIdea(other.brain->getNthIdea(i), i);
 	}
 	return (*this);
 }
@@ -52,7 +54,7 @@ Cat::~Cat()
 
 void Cat::makeSound() const
 {
-	std::cout << "Miaou\n";
+	std::cout << "\033[1;32mMiaou\033[0m\n";
 }
 
 std::string Cat::getType() const

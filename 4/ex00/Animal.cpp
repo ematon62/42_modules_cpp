@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grossviche <grossviche@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:22:15 by grossviche        #+#    #+#             */
-/*   Updated: 2025/04/30 14:48:44 by grossviche       ###   ########.fr       */
+/*   Updated: 2025/06/11 21:10:32 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Animal::~Animal()
 
 void Animal::makeSound() const
 {
-	std::cout << "animal sound\n";
+	std::cout << "\033[1;32mAnimal sound\033[0m\n";
 }
 
 std::string Animal::getType() const
