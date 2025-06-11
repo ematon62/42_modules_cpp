@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:19:35 by ematon            #+#    #+#             */
-/*   Updated: 2025/06/10 20:51:43 by ematon           ###   ########.fr       */
+/*   Updated: 2025/06/11 10:09:03 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@ MateriaSource::MateriaSource(const MateriaSource& other)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (_known_materias[i])
-		{
-			delete _known_materias[i];
-			_known_materias[i] = NULL;
-		}
 		if (other._known_materias[i])
 		{
 			_known_materias[i] = other._known_materias[i]->clone();
@@ -36,6 +31,8 @@ MateriaSource::MateriaSource(const MateriaSource& other)
 				exit(1);
 			}
 		}
+		else
+			_known_materias[i] = NULL;	
 	}
 }
 
@@ -59,6 +56,8 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& other)
 				exit(1);
 			}
 		}
+		else
+			this->_known_materias[i] = NULL;
 	}
 	return (*this);
 }

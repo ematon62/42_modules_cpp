@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 14:54:54 by ematon            #+#    #+#             */
-/*   Updated: 2025/06/10 20:50:16 by ematon           ###   ########.fr       */
+/*   Updated: 2025/06/11 10:29:00 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ Character& Character::operator=(const Character& other)
 				exit(1);
 			}
 		}
+		else
+			_inventory[i] = NULL;
 	}
 	return (*this);
 }
@@ -82,7 +84,7 @@ void Character::equip(AMateria* m)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (!_inventory[i])
+		if (!_inventory[i] || _inventory[i] == m)
 		{
 			_inventory[i] = m;
 			break ;
@@ -94,16 +96,16 @@ void Character::equip(AMateria* m)
 void Character::unequip(int idx)
 {
 	if ((0 <= idx) && (idx <= 3))
-	_inventory[idx] = NULL;
+		_inventory[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter& target)
 {
 	if (((0 <= idx) && (idx <= 3)) && _inventory[idx])
-	_inventory[idx]->use(target);
+		_inventory[idx]->use(target);
 }
 
-AMateria* Character::getItem(int idx)
+AMateria* Character::getItem(int idx) const
 {
 	return (_inventory[idx]);
 }

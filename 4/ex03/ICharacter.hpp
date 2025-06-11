@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:54:58 by ematon            #+#    #+#             */
-/*   Updated: 2025/06/10 20:46:47 by ematon           ###   ########.fr       */
+/*   Updated: 2025/06/11 10:19:58 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class ICharacter
 		virtual void equip(AMateria* m) = 0;
 		virtual void unequip(int idx) = 0;
 		virtual void use(int idx, ICharacter& target) = 0;
+		virtual AMateria* getItem(int idx) const = 0;
 };
 
 #endif
