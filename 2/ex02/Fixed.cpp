@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 11:40:27 by ematon            #+#    #+#             */
-/*   Updated: 2025/04/25 12:16:42 by ematon           ###   ########.fr       */
+/*   Updated: 2025/06/15 21:29:33 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ Fixed Fixed::operator-(const Fixed &a)
 
 Fixed Fixed::operator*(const Fixed &a)
 {
-	Fixed b(a.toFloat() * this->toFloat());
+	Fixed b((this->getRawBits() * a.getRawBits()) >> 8);
 	return b;
 }
 

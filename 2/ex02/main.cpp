@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 13:48:41 by ematon            #+#    #+#             */
-/*   Updated: 2025/05/15 14:02:45 by ematon           ###   ########.fr       */
+/*   Updated: 2025/06/15 21:29:44 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int main( void ) {
 	std::cout << (a == b) << std::endl;
 	std::cout << Fixed(a + b) << std::endl;
 	std::cout << Fixed(a - b) << std::endl;
-	std::cout << Fixed(a * b) << std::endl;
+	std::cout << Fixed(1000000) * Fixed(1) << std::endl;
 	std::cout << Fixed(a / b) << std::endl;
 	return 0;
 }
