@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 14:16:49 by ematon            #+#    #+#             */
-/*   Updated: 2025/06/17 15:28:21 by ematon           ###   ########.fr       */
+/*   Updated: 2025/06/18 12:37:26 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int main(void)
 {
 	Intern someRandomIntern;
 
+	std::cout << "\033[1;32mUnknown form\033[0m\n";
 	try
 	{
 		someRandomIntern.makeForm("existe po", "oui-oui");
@@ -26,12 +27,12 @@ int main(void)
 		std::cerr << "Error: " << e.what() << '\n';
 	}
 
-	std::cout << "\033[1;32mShrubbery Creation Form\033[0m\n";
+	std::cout << "\n\033[1;32mShrubbery Creation Form\033[0m\n";
 	{
 		AForm* f;
 		try
 		{
-			f = someRandomIntern.makeForm("shrubbery creation form", "jp");
+			f = someRandomIntern.makeForm("shrubbery creation", "jp");
 		}
 		catch(const std::exception& e)
 		{
@@ -123,7 +124,7 @@ int main(void)
 		AForm* f;
 		try
 		{
-			f = someRandomIntern.makeForm("robotomy request form", "jp");
+			f = someRandomIntern.makeForm("robotomy request", "jp");
 		}
 		catch(const std::exception& e)
 		{
@@ -208,7 +209,7 @@ int main(void)
 		AForm* f;
 		try
 		{
-			f = someRandomIntern.makeForm("presidential pardon form", "jp");
+			f = someRandomIntern.makeForm("presidential pardon", "jp");
 		}
 		catch(const std::exception& e)
 		{
