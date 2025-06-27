@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gross <gross@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:48:05 by ematon            #+#    #+#             */
-/*   Updated: 2025/06/25 22:30:03 by ematon           ###   ########.fr       */
+/*   Updated: 2025/06/27 14:40:34 by gross            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,6 @@
 bool isnum(char c)
 {
 	return ((c >= '0' && c <= '9'));
-}
-
-t_type simple_cases(const std::string& str, size_t n)
-{
-	if (n <= 1)
-		return (CHAR);
-	else if ((isnum(str[0]) && isnum(str[1]) )
-		|| ( (str[0] == '+' || str[0] == '-') && isnum(str[1]) ))
-		return (INT);
-	else if ((isnum(str[0]) && str[1] == '.') || (isnum(str[1]) && str[0] == '.'))
-		return (DOUBLE);
-	return (ELSE);
 }
 
 t_type get_pseudo_type(const std::string& str)
@@ -38,27 +26,13 @@ t_type get_pseudo_type(const std::string& str)
 	return (ELSE);
 }
 
-t_conv_info check_overflows(t_type type, const std::string &str)
-{
-	t_conv_info info;
-	
-	info.int_overflow = false;
-	info.float_overflow = false;
-	info.is_printable = true;
-	if (type == INT
-		&& (info.value < std::numeric_limits<int>::min()
-		|| info.value > std::numeric_limits<int>::max()))
-		info.int_overflow = true;
-	return (info);
-}
 
 t_type get_scalar_type(const std::string &str, size_t n)
 {
-	t_type			type = CHAR;
+	t_type			type = INT;
 	unsigned int	i = 0;
 	bool			has_numbers = false;
 	
-	type = INT;
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	for (; str[i]; i++)
@@ -77,37 +51,116 @@ t_type get_scalar_type(const std::string &str, size_t n)
 	return (type);
 }
 
+t_conversion get_info(t_type type, const std::string& str)
+{
+	t_conversion info;
+	
+	info.overflow_test = atof(str.c_str());
+	info.possible = true;
+	info.overflow = false;
+	switch(type)
+	{
+		case (CHAR):
+			info.char_value = str[1];
+			info.int_value = static_cast<int>(info.char_value);
+			info.fl_value = static_cast<float>(info.char_value);
+			info.dbl_value = static_cast<double>(info.char_value);
+			break;
+		case (INT):
+			if (info.overflow_test > std::numeric_limits<int>::max()
+				|| info.overflow_test < std::numeric_limits<int>::min())
+				info.overflow = true;
+			info.int_value = atoi(str.c_str());
+			info.char_value = static_cast<char>(info.int_value);
+			info.fl_value = static_cast<float>(info.int_value);
+			info.dbl_value = static_cast<double>(info.int_value);
+			break;
+		case(FLOAT):
+			if (info.overflow_test > std::numeric_limits<float>::max()
+				|| info.overflow_test < std::numeric_limits<float>::min())
+				info.overflow = true;
+			if (info.overflow_test == std::numeric_limits<float>::infinity())
+				info.possible = false;
+			info.dbl_value = atof(str.c_str());
+			info.char_value = static_cast<char>(info.fl_value);
+			info.int_value = static_cast<int>(info.fl_value);
+			info.fl_value = static_cast<float>(info.dbl_value);
+			break;
+		case(DOUBLE):
+			if (info.overflow_test == std::numeric_limits<double>::infinity())
+				info.possible = false;
+			info.dbl_value = atof(str.c_str());
+			info.char_value = static_cast<char>(info.dbl_value);
+			info.int_value = static_cast<int>(info.dbl_value);
+			info.fl_value = static_cast<float>(info.dbl_value);
+			break;
+		default:
+			break;
+	}
+	return (info);
+}
+
+void print_char(t_conversion info)
+{
+	std::cout << "char: ";
+	if (!info.possible)
+		std::cout << "impossible\n";
+	else if (info.char_value >= 0 && info.char_value <= 27)
+		std::cout << "non printable\n";
+	else
+		std::cout << info.char_value << std::endl;
+}
+
+void print_int(t_conversion info)
+{
+	std::cout << "int: ";
+	if (!info.possible)
+		std::cout << "impossible\n";
+	else
+		std::cout << info.int_value << std::endl;
+}
+
+void print_float(t_conversion info)
+{
+	std::cout << info.fl_value << std::endl;
+}
+
+void print_double(t_conversion info)
+{
+	std::cout << info.dbl_value << std::endl;
+}
+
+void print_info(t_conversion info)
+{
+	if (info.overflow)
+	{
+		std::cout << "Overflow\n";
+		return ;
+	}
+	print_char(info);
+	print_int(info);
+	print_float(info);
+	print_double(info);
+}
+
 void ScalarConverter::convert(const std::string& str)
 {
 	t_type type;
 	size_t n = str.length();
 
-	if (n <= 2)
-		type = simple_cases(str, n);
-	else
+	type = get_pseudo_type(str);
+	if (type == ELSE)
 	{
-		type = get_pseudo_type(str);
-		if (type == ELSE)
+		if (n == 3 && str[0] == '\'' && str[2] == '\'')
+			type = CHAR;
+		else
 			type = get_scalar_type(str, n);
 	}
-	t_conv_info conv_info = check_overflows(type, str);
-	(void)conv_info;
-	switch(type)
+	if (type == ELSE)
 	{
-		case ELSE:
-			std::cout << "else\n";
-			break;
-		case CHAR:
-			std::cout << "char\n";
-			break;
-		case INT:
-			std::cout << "int\n";
-			break;
-		case FLOAT:
-			std::cout << "float\n";
-			break;
-		case DOUBLE:
-			std::cout << "double\n";
-			break;
+		std::cout << "Input does not represent a literal\n";
+		return ;
 	}
+	t_conversion	info = get_info(type, str);
+	print_info(info);
 }

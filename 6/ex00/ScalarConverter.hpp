@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gross <gross@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:41:05 by ematon            #+#    #+#             */
-/*   Updated: 2025/06/25 22:05:29 by ematon           ###   ########.fr       */
+/*   Updated: 2025/06/27 14:34:50 by gross            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <limits>
 #include <cmath>
 #include <iomanip>
+#include <cstdlib>
 
 typedef enum e_type
 {
@@ -27,14 +28,17 @@ typedef enum e_type
 	DOUBLE
 }	t_type;
 
-typedef struct s_conv_info
+typedef struct s_conversion
 {
 	t_type	type;
-	double	value;
-	bool	is_printable;
-	bool	int_overflow;
-	bool	float_overflow;
-}	t_conv_info;
+	double	overflow_test;
+	char	char_value;
+	int		int_value;
+	float	fl_value;
+	double	dbl_value;
+	bool	overflow;
+	bool	possible;
+}	t_conversion;
 
 class ScalarConverter
 {
@@ -49,5 +53,5 @@ class ScalarConverter
 
 t_type get_scalar_type(const std::string& str);
 t_type get_pseudo_type(const std::string& str);
-t_conv_info check_overflows(t_type initial_type, const std::string &str);
+t_conversion check_overflows(t_type initial_type, const std::string &str);
 #endif
