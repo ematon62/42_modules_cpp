@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   template.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gross <gross@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 14:42:51 by gross             #+#    #+#             */
-/*   Updated: 2025/06/30 15:19:59 by gross            ###   ########.fr       */
+/*   Created: 2025/06/30 13:37:45 by gross             #+#    #+#             */
+/*   Updated: 2025/06/30 16:54:40 by gross            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEMPLATE_HPP
-#define TEMPLATE_HPP
+#include "iter.hpp"
 
-#include <iostream>
-
-template<typename T>
-void swap(T& a, T& b)
+int main(void)
 {
-	T c = a;
-	a = b;
-	b = c;
+	{
+		std::string array[] = {"caca", "pipi"};
+		iter(array, 2, &print);
+		std::cout << std::endl;
+		iter(array, 2, &print2);
+	}
+	std::cout << std::endl;
+	{
+		int int_array[] = {1, 2, 3, 4};
+		iter(int_array, 4, &set_value);
+		iter(int_array, 4, print);
+	}
 }
-
-template<typename T>
-T& min(T& a, T& b)
-{
-	return (a < b ? a : b);	
-}
-
-template<typename T>
-T& max(T& a, T& b)
-{
-	return (a < b ? b : a);
-}
-
-#endif

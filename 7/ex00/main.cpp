@@ -6,7 +6,7 @@
 /*   By: gross <gross@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:37:45 by gross             #+#    #+#             */
-/*   Updated: 2025/06/30 15:09:06 by gross            ###   ########.fr       */
+/*   Updated: 2025/06/30 15:19:52 by gross            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,6 @@ class Data
 		~Data() {};
 		std::string getName() const { return _name; };
 };
-
-template<typename T>
-void swap(T& a, T& b)
-{
-	T c = a;
-	a = b;
-	b = c;
-}
-
-template<typename T>
-T& min(T& a, T& b)
-{
-	return (a < b ? a : b);	
-}
-
-template<typename T>
-T& max(T& a, T& b)
-{
-	return (a < b ? b : a);
-}
 
 int main(void)
 {

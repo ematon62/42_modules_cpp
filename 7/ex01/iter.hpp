@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   template.hpp                                       :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gross <gross@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:42:51 by gross             #+#    #+#             */
-/*   Updated: 2025/06/30 15:19:59 by gross            ###   ########.fr       */
+/*   Updated: 2025/06/30 16:54:58 by gross            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,24 @@
 #include <iostream>
 
 template<typename T>
-void swap(T& a, T& b)
+void print(T& x)
 {
-	T c = a;
-	a = b;
-	b = c;
+    std::cout << x << std::endl;
 }
 
 template<typename T>
-T& min(T& a, T& b)
+void print2(const T& x)
 {
-	return (a < b ? a : b);	
+    std::cout << x << std::endl;
 }
 
 template<typename T>
-T& max(T& a, T& b)
+void iter(T array[], size_t n, void (*f)(const T& x))
 {
-	return (a < b ? b : a);
+    for (size_t i = 0; i < n; i++)
+    {
+        f(array[i]);
+    }
 }
 
 #endif
