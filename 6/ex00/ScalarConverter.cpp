@@ -6,16 +6,11 @@
 /*   By: gross <gross@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:48:05 by ematon            #+#    #+#             */
-/*   Updated: 2025/07/01 14:24:36 by gross            ###   ########.fr       */
+/*   Updated: 2025/07/01 16:20:36 by gross            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-
-bool isnum(char c)
-{
-	return ((c >= '0' && c <= '9'));
-}
 
 t_type get_pseudo_type(const std::string& str)
 {
@@ -39,15 +34,20 @@ t_type get_scalar_type(const std::string &str, size_t n)
 	{
 		if (str[i] == '.' && type != DOUBLE)
 			type = DOUBLE;
-		else if (!isnum(str[i]) && (i != n - 1 || str[i] != 'f'))
+		else if (!isdigit(str[i]) && (i != n - 1 || str[i] != 'f'))
 			return (ELSE);
-		else if (isnum(str[i]))
+		else if (isdigit(str[i]))
 			has_numbers = true;
 	}
 	if (!has_numbers)
 		return (ELSE);
 	if (str[i - 1] == 'f')
-		type = FLOAT;
+	{
+		if (type == DOUBLE)
+			type = FLOAT;
+		else
+			type = ELSE;
+	}
 	return (type);
 }
 
@@ -81,14 +81,12 @@ t_conversion get_info(t_type type, const std::string& str)
 				|| str == "nanf")
 				info.possible = false;
 			else if (info.overflow_test > std::numeric_limits<float>::max()
-				|| info.overflow_test < -std::numeric_limits<float>::min())
+				|| info.overflow_test < -std::numeric_limits<float>::max())
 				info.overflow = true;
 			info.dbl_value = atof(str.c_str());
 			info.char_value = static_cast<char>(info.dbl_value);
 			info.int_value = static_cast<int>(info.dbl_value);
 			info.fl_value = static_cast<float>(info.dbl_value);
-			// std::cout << info.dbl_value << std::endl;
-			// std::cout << info.fl_value << std::endl;
 			break;
 		case(DOUBLE):
 			if (info.overflow_test == std::numeric_limits<double>::infinity()
@@ -131,15 +129,11 @@ void print_int(t_conversion info)
 
 void print_float(t_conversion info)
 {
-	std::cout.precision(1);
-	std::cout << std::fixed;
 	std::cout << "float: " << info.fl_value << "f\n";
 }
 
 void print_double(t_conversion info)
 {
-	std::cout.precision(1);
-	std::cout << std::fixed;
 	std::cout << "double: " << info.dbl_value << std::endl;
 }
 
