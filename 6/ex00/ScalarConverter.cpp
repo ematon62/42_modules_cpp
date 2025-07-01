@@ -6,7 +6,7 @@
 /*   By: gross <gross@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:48:05 by ematon            #+#    #+#             */
-/*   Updated: 2025/06/27 15:18:55 by gross            ###   ########.fr       */
+/*   Updated: 2025/07/01 14:24:36 by gross            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,11 +131,15 @@ void print_int(t_conversion info)
 
 void print_float(t_conversion info)
 {
+	std::cout.precision(1);
+	std::cout << std::fixed;
 	std::cout << "float: " << info.fl_value << "f\n";
 }
 
 void print_double(t_conversion info)
 {
+	std::cout.precision(1);
+	std::cout << std::fixed;
 	std::cout << "double: " << info.dbl_value << std::endl;
 }
 
