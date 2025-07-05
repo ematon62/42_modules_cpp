@@ -6,45 +6,108 @@
 /*   By: gross <gross@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 23:00:10 by gross             #+#    #+#             */
-/*   Updated: 2025/07/02 18:09:23 by gross            ###   ########.fr       */
+/*   Updated: 2025/07/05 10:32:15 by gross            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "easyfind.hpp"
+#include "Span.hpp"
+#ifndef SIZE
+#  define SIZE 1000000
+#endif
 
-int main(void)
+int main()
 {
-	std::cout << "Containers are built on this array: {";
-
-	int size = 4;
-	int array[size];
-	for (int i = 0; i < size; i++)
+	std::cout << " * Span size = 0 *\n";
 	{
-		array[i] = i;
-		std::cout << i << ((i < size - 1) ? ", " : "}\n");
+		Span sp(0);
+		
+		std::cout << "Adding number...\n";
+		try
+		{
+			sp.addNumber(0);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+
+		std::cout << "Getting longest and shortest spans...\n";
+		try
+		{
+			sp.longestSpan();
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		try
+		{
+			sp.shortestSpan();
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+	}
+	
+	std::cout << "\n * Mega fat Span of size " << SIZE << " *\n";;
+	{
+		Span sp(SIZE);
+		
+		std::cout << "Filling span\n";
+		for (int i = -1; i < SIZE - 1; i++)
+		{
+				sp.addNumber(i);
+		}
+		std::cout << "Longest et shortest span: \n";
+		std::cout << sp.longestSpan() << std::endl;
+		std::cout << sp.shortestSpan() << std::endl;
+		
+		std ::cout << "Trying addNumber...\n";
+		try
+		{
+			sp.addNumber(0);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
 	}
 
-	std::cout << " * Vectors * \n";
+	std::cout << "\n * Main du sujet *\n";
 	{
-		std::vector<int> v(array, array + 4);
-		for (int j = -5; j < 10; j++)
-			std::cout << j << " is" << (easyfind(v, j) ? "" : " not")
-				<< " in container\n";
-	}
+		Span sp = Span(7);
+		sp.addNumber(6);
+		sp.addNumber(3);
+		sp.addNumber(17);
+		sp.addNumber(9);
+		sp.addNumber(11);
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
 
-	std::cout << "\n * Deque * \n";
-	{
-		std::deque<int> v(array, array + 4);
-		for (int j = -5; j < 10; j++)
-			std::cout << j << " is" << (easyfind(v, j) ? "" : " not")
-				<< " in container\n";
-	}
+		std::cout << "Trying addNumbers...\n";
+		std::vector<int> v2(5, 10);
+		try
+		{
+			sp.addNumbers(v2.begin(), v2.end());
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
 
-	std::cout << "\n * List * \n";
-	{
-		std::list<int> v(array, array + 4);
-		for (int j = -5; j < 10; j++)
-			std::cout << j << " is" << (easyfind(v, j) ? "" : " not")
-				<< " in container\n";
+		std::vector<int> v3(2, 10);
+		try
+		{
+			sp.addNumbers(v3.begin(), v3.end());
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
 	}
+	return 0;
 }

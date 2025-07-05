@@ -6,7 +6,7 @@
 /*   By: gross <gross@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 18:12:29 by gross             #+#    #+#             */
-/*   Updated: 2025/07/05 10:20:11 by gross            ###   ########.fr       */
+/*   Updated: 2025/07/04 16:05:53 by gross            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,13 @@
 
 #include <iostream>
 #include <vector>
-#include <algorithm>
 #include <exception>
-#include <cmath>
 
 class Span
 {
 	private:
-		unsigned int _N;
 		std::vector<int> _v;
+		unsigned int _N;
 		Span();
 	public:
 		Span(unsigned int N);
@@ -31,8 +29,6 @@ class Span
 		Span& operator=(const Span& other);
 		~Span();
 		void addNumber(int n);
-		void addNumbers(std::vector<int>::iterator it,
-			std::vector<int>::iterator jt);
 		int shortestSpan() const;
 		int longestSpan() const;
 		
