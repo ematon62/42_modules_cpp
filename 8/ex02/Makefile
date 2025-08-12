@@ -1,10 +1,9 @@
-NAME := span
+NAME := ex02
 CXX := c++
 
 CXXFLAGS := -Wall -Wextra -Werror -Wconversion -std=c++98
 
-SRCS := main.cpp\
-		Span.cpp
+SRCS := main.cpp
 
 OBJS := $(SRCS:.cpp=.o)
 
