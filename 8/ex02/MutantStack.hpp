@@ -1,66 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MutantStack.hpp                                           :+:      :+:    :+:   */
+/*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gross <gross@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 18:12:29 by gross             #+#    #+#             */
-/*   Updated: 2025/07/04 16:05:53 by gross            ###   ########.fr       */
+/*   Updated: 2025/07/05 11:30:53 by gross            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MutantStack_HPP
-#define MutantStack_HPP
+#ifndef MUTANTSTACK_HPP
+#define MUTANTSTACK_HPP
 
 #include <iostream>
-#include <vector>
 #include <stack>
-#include <list>
-#include <deque>
 #include <exception>
 
-// (constructor)
-// (destructor)
-// operator=
-// top
-// empty
-// size
-// push
-// pop
-//iterators
-template <typename T>
-class MutantStack : public std::deque<T>
+template<typename T>
+class MutantStack : public std::stack<T>
 {
 	public:
-		T& top();
-		const T& top() const;
-		void push(T elem);
-		void pop();
+		MutantStack();
+		MutantStack(const MutantStack& other);
+		MutantStack& operator=(const MutantStack& other);
+		~MutantStack();
+		
 };
 
-template <typename T>
-T& MutantStack<T>::top() 
+template<typename T>
+MutantStack<T>::MutantStack()
 {
-	return (this->back());
+	
 }
 
-template <typename T>
-const T& MutantStack<T>::top() const
+template<typename T>
+MutantStack<T>::MutantStack(const MutantStack& other)
 {
-	return (this->back());
+	
 }
 
-template <typename T>
-void MutantStack<T>::push(T elem) 
+template<typename T>
+MutantStack<T>& MutantStack<T>::operator=(const MutantStack<T>& other)
 {
-	return (this->push_back(elem));
+	
 }
 
-template <typename T>
-void MutantStack<T>::pop() 
+template<typename T>
+MutantStack<T>::~MutantStack()
 {
-	return (this->pop_back());
+	
 }
 
 #endif

@@ -85,53 +85,29 @@ int main()
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 
+		std::cout << "Trying addNumbers...\n";
+		std::vector<int> v2(5, 10);
+		try
+		{
+			sp.addNumbers(v2.begin(), v2.end());
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+
+		std::vector<int> v3(2, 10);
+		try
+		{
+			sp.addNumbers(v3.begin(), v3.end());
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
 		
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
-	}
-
-
-	std::cout << "\nTrying addNumbers...\n";
-	std::vector<int> v2;
-	v2.push_back(1);
-	v2.push_back(3);
-	v2.push_back(5);
-	v2.push_back(7);
-	v2.push_back(8);
-	Span spe = Span(5);
-	try
-	{
-		spe.addNumbers(v2.begin(), v2.end());
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-
-	std::cout << spe.shortestSpan() << std::endl;
-	std::cout << spe.longestSpan() << std::endl;
-
-	std::vector<int> v3(2, 10);
-	try
-	{
-		spe.addNumbers(v3.begin(), v3.end());
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-
-	std::cout << spe.shortestSpan() << std::endl;
-	std::cout << spe.longestSpan() << std::endl;
-
-	std::vector<int> v4(10, 10);
-	try
-	{
-		spe.addNumbers(v4.begin(), v4.end());
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
 	}
 	return 0;
 }

@@ -32,15 +32,14 @@ void Span::addNumber(int n)
 {
 	if (_v.size() == _N)
 		throw SpanFullException();
-	_v.insert(_v.end(), n);
+	_v.push_back(n);
 }
 
 void Span::addNumbers(std::vector<int>::iterator it,
 	std::vector<int>::iterator jt)
 {
-	if (std::distance(it, jt) + static_cast<long>(_v.size()) > _N)
+	if (std::distance(it, jt) + _v.size() > _N)
 		throw SpanFullException();
-
 	_v.insert(_v.end(), it, jt);
 }
 
@@ -57,7 +56,7 @@ int Span::longestSpan() const
 int Span::shortestSpan() const
 {
 	if (_v.size() <= 1)
-		throw NoSpanException();
+	throw NoSpanException();
 	
 	std::vector<int> tmp = _v;
 	std::sort(tmp.begin(), tmp.end());
