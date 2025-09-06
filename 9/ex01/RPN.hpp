@@ -6,9 +6,12 @@
 /*   By: gross <gross@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:01:39 by gross             #+#    #+#             */
-/*   Updated: 2025/08/28 16:02:25 by gross            ###   ########.fr       */
+/*   Updated: 2025/09/01 14:12:48 by gross            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef RPN_HPP
+#define RPN_HPP
 
 #include <stack>
 #include <string>
@@ -47,3 +50,5 @@ class RPN {
 		virtual const char * what() const throw();
 	};
 };
+
+#endif

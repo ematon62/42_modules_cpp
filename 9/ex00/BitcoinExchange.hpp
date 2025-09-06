@@ -6,9 +6,12 @@
 /*   By: gross <gross@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:01:39 by gross             #+#    #+#             */
-/*   Updated: 2025/08/28 14:17:25 by gross            ###   ########.fr       */
+/*   Updated: 2025/09/01 14:12:21 by gross            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef BITCOINEXCHANGE_HPP
+#define BITCOINEXCHANGE_HPP
 
 #include <map>
 #include <iostream>
@@ -66,3 +69,5 @@ class BitcoinExchange {
 };
 
 bool operator<(const tm date1, const tm date2);
+
+#endif
