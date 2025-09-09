@@ -10,24 +10,76 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Span.hpp"
+#include "MutantStack.hpp"
 
 int main()
 {
-	Span sp = Span(5);
-
-	try
+	std::cout << "MutantStack" << std::endl;
 	{
-		sp.addNumber(6);
-		sp.addNumber(-2);
-		sp.addNumber(-1);
-		std::cout << sp.shortestSpan() << std::endl;
-		std::cout << sp.longestSpan() << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+		MutantStack<int> mstack;
 	
-	return 0;
+		mstack.push(5);
+		mstack.push(17);
+		std::cout << mstack.top() << std::endl;
+		mstack.pop();
+		std::cout << mstack.size() << std::endl;
+		mstack.push(3);
+		mstack.push(5);
+		mstack.push(737);
+		mstack.push(0);
+	
+		MutantStack<int>::iterator it = mstack.begin();
+		MutantStack<int>::iterator ite = mstack.end();
+		++it;
+		--it;
+	
+		while (it != ite)
+		{
+			std::cout << *it << std::endl;
+			++it;
+		}
+	
+		std::cout << std::endl;
+		std::stack<int> s(mstack);
+		while (!s.empty())
+		{
+			std::cout << s.top() << std::endl;
+			s.pop();
+		}
+	}
+
+	std::cout << "\nstd::list" << std::endl;
+	{
+		std::list<int> l;
+	
+		l.push_back(5);
+		l.push_back(17);
+		std::cout << l.back() << std::endl;
+		l.pop_back();
+		std::cout << l.size() << std::endl;
+		l.push_back(3);
+		l.push_back(5);
+		l.push_back(737);
+		l.push_back(0);
+	
+		std::list<int>::iterator it = l.begin();
+		std::list<int>::iterator ite = l.end();
+		++it;
+		--it;
+	
+		while (it != ite)
+		{
+			std::cout << *it << std::endl;
+			++it;
+		}
+	
+		std::cout << std::endl;
+		std::list<int> s(l);
+		while (!s.empty())
+		{
+			std::cout << s.back() << std::endl;
+			s.pop_back();
+		}
+		return 0;
+	}
 }
