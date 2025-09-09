@@ -14,47 +14,49 @@
 #define MUTANTSTACK_HPP
 
 #include <iostream>
+#include <iomanip>
 #include <stack>
 #include <list>
-#include <exception>
 
-template<typename T>
-class MutantStack : public std::deque<T>
+template <typename T>
+class MutantStack : public std::stack<T>
 {
+	private:
+	
 	public:
 		MutantStack();
-		MutantStack(const MutantStack& other);
-		MutantStack& operator=(const MutantStack& other);
 		~MutantStack();
+
+		//Underlying container can either be vector, deque or list
+		//By default, deque
+		typedef typename std::stack<T>::container_type underlying_type;
+
+		//We create template type based on underlying container's iterators
+		typedef typename underlying_type::iterator iterator;
+		typedef typename underlying_type::const_iterator const_iterator;
 		
-		const T& top() const;
-		T& top();
-		void push(T elem);
-		void pop();
+		iterator begin();
+		const_iterator begin() const;
+		iterator end();
+		const_iterator end() const;
 };
 
-template<typename T>
+template <typename T>
 MutantStack<T>::MutantStack() {}
 
-template<typename T>
-MutantStack<T>::MutantStack(const MutantStack& other) { (void)other; }
-
-template<typename T>
-MutantStack<T>& MutantStack<T>::operator=(const MutantStack<T>& other) { (void)other; }
-
-template<typename T>
+template <typename T>
 MutantStack<T>::~MutantStack() {}
 
 template <typename T>
-T& MutantStack<T>::top() { return (this->back()); }
+typename MutantStack<T>::iterator MutantStack<T>::begin() {return (this->c.begin());}
 
 template <typename T>
-const T& MutantStack<T>::top() const { return (this->back()); }
+typename MutantStack<T>::const_iterator MutantStack<T>::begin() const {return (this->c.begin());}
 
 template <typename T>
-void MutantStack<T>::push(T elem)  { return (this->push_back(elem)); }
+typename MutantStack<T>::iterator MutantStack<T>::end() {return (this->c.end());}
 
 template <typename T>
-void MutantStack<T>::pop() { return (this->pop_back()); }
+typename MutantStack<T>::const_iterator MutantStack<T>::end() const {return (this->c.end());}
 
 #endif
