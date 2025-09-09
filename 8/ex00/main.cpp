@@ -14,7 +14,7 @@
 
 int main(void)
 {
-	std::cout << "Containers are built on this array: {";
+	std::cout << "Containers are built from this array: {";
 
 	int size = 4;
 	int array[size];

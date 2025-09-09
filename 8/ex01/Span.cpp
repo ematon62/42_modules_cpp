@@ -20,7 +20,7 @@ Span::Span(const Span& other) : _N(other._N), _v(other._v) {}
 Span& Span::operator=(const Span& other)
 {
 	if (this == &other)
-	return (*this);
+		return (*this);
 	_N = other._N;
 	_v = other._v;
 	return (*this);
@@ -35,14 +35,22 @@ void Span::addNumber(int n)
 	_v.push_back(n);
 }
 
+//std::distance = distance entre 2 pointeurs (generalisation)
+//Necessaire que it < jt
 void Span::addNumbers(std::vector<int>::iterator it,
 	std::vector<int>::iterator jt)
 {
-	if (std::distance(it, jt) + _v.size() > _N)
+	long d = distance(it, jt);
+	if (d < 0) 
+		d *= -1;
+	unsigned long ud = static_cast<unsigned long>(d);
+	if (ud + _v.size() > _N)
 		throw SpanFullException();
 	_v.insert(_v.end(), it, jt);
 }
 
+//Simple avec séquence triée
+//+ opti pour gros nombres (sort complexité logarithmique)
 int Span::longestSpan() const
 {
 	if (_v.size() <= 1)
@@ -56,7 +64,7 @@ int Span::longestSpan() const
 int Span::shortestSpan() const
 {
 	if (_v.size() <= 1)
-	throw NoSpanException();
+		throw NoSpanException();
 	
 	std::vector<int> tmp = _v;
 	std::sort(tmp.begin(), tmp.end());
@@ -67,6 +75,15 @@ int Span::shortestSpan() const
 			min = abs(tmp[i] - tmp[i + 1]);
 	}
 	return (min);
+}
+
+void Span::printContents()
+{
+	std::vector<int>::iterator it = _v.begin();
+	std::vector<int>::iterator end = _v.end();
+	for (; it != end; it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
 }
 
 const char* Span::SpanFullException::what() const throw()

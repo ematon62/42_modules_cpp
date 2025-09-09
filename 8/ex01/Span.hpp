@@ -35,6 +35,7 @@ class Span
 			std::vector<int>::iterator jt);
 		int shortestSpan() const;
 		int longestSpan() const;
+		void printContents();
 		
 		class SpanFullException : public std::exception
 		{

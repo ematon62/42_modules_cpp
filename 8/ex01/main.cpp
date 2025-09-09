@@ -59,6 +59,47 @@ int main()
 		{
 				sp.addNumber(i);
 		}
+		std::cout << "Printing...\n";
+		sp.printContents();
+		
+		std::cout << "Longest et shortest span: \n";
+		std::cout << sp.longestSpan() << std::endl;
+		std::cout << sp.shortestSpan() << std::endl;
+		
+		std ::cout << "Trying addNumber...\n";
+		try
+		{
+			sp.addNumber(0);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+	}
+
+	std::cout << "\n * addNumbers *\n";
+	{
+		Span sp(SIZE);
+		std::vector<int> vec;
+		
+		std::cout << "Filling vector\n";
+		for (int i = 0; i < SIZE; i++)
+		{
+			vec.push_back(i);
+		}
+
+		std::cout << "Trying addNumbers...\n";
+		try
+		{
+			sp.addNumbers(vec.begin(), vec.end());
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+
+		sp.printContents();
+
 		std::cout << "Longest et shortest span: \n";
 		std::cout << sp.longestSpan() << std::endl;
 		std::cout << sp.shortestSpan() << std::endl;
