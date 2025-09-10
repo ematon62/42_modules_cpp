@@ -57,7 +57,7 @@ bool isValidInput(int argc, char **argv)
 	for (int i = 1; i < argc; i++)
 	{
 		intege = atoi(argv[i]);
-		if (!is_integer(argv[i]) || intege < 0)
+		if (!is_integer(argv[i]) || intege < 0 || argv[i][0] == 0)
 		{
 			return (false);
 		}

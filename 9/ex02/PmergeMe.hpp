@@ -120,8 +120,7 @@ template<typename T>
 void fillSAndOther(T& container, int level, int nb_elems, std::vector<typename T::iterator> &S, std::vector<typename T::iterator> &others)
 {
 	typedef typename T::iterator iter;
-	iter end = nextElem(container.begin(), (nb_elems - (nb_elems % 2 == 1)) * level);
-
+	
 	//If we insert the smallest element of the first pair, S will still be sorted
 	S.insert(S.end(), nextElem(container.begin(), level - 1));
 	S.insert(S.end(), nextElem(container.begin(), level * 2 - 1));
@@ -131,21 +130,24 @@ void fillSAndOther(T& container, int level, int nb_elems, std::vector<typename T
 		others.insert(others.end(), nextElem(container.begin(), level * (i - 1) - 1));
 		S.insert(S.end(), nextElem(container.begin(), level * i - 1));
 	}
-
-	//Odd element inserted in others
+	
+	//Odd element (= last one) inserted in others
 	if (nb_elems % 2 == 1)
-		others.insert(others.end(), nextElem(end, -level + 1));
+	{
+		iter odd_elem = nextElem(container.begin(), level * (nb_elems) - 1);
+		others.insert(others.end(), odd_elem);
+	}
 }
 
 //Binary insert while considering that
 //if inserting b_i, we look at the [b1, a1..., a_i-1] portion of the main
 template<typename T>
-void binaryInsert(T& container, std::vector<typename T::iterator> &dest, typename T::iterator elem, unsigned int i)
+void binaryInsert(T& container, std::vector<typename T::iterator> &dest, typename T::iterator elem)
 {
 	(void)container;
 
     size_t left = 0;
-    size_t right = (i <= dest.size()) ? i : dest.size();
+    size_t right = dest.size();
 
     while (left < right) {
         std::size_t mid = left + (right - left) / 2;
@@ -169,8 +171,9 @@ void putBackIntoContainer(T& container, std::vector<typename T::iterator>& S, in
     {
 		for (int i = 0; i < level; i++)
         {
-			S_elem = nextElem(*it, -level + i + 1);
-            temp.insert(temp.end(), *S_elem);
+			S_elem = *it;
+			std::advance(S_elem, -level + i + 1);
+			temp.insert(temp.end(), *S_elem);
         }
 	}
 
@@ -200,6 +203,13 @@ void ford_johnson(T& container, int level)
     ford_johnson(container, level * 2);
 
 	fillSAndOther(container, level, nb_elems, S, others);
+	std::cout << "LEVEL: " << level << std::endl;
+	for (typename std::vector<iter>::iterator it = S.begin(); it != S.end(); it++)
+		std::cout << *(*it) << " ";
+	std::cout << std::endl;
+	for (typename std::vector<iter>::iterator it = others.begin(); it != others.end(); it++)
+		std::cout << *(*it) << " ";
+	std::cout << std::endl;
 
 	//Get order in which we insert
 	std::vector<size_t> insertion_order = generateJacobsthalOrder(others.size());
@@ -207,16 +217,17 @@ void ford_johnson(T& container, int level)
 	//Binary Insert elements from the pend to the main according to Jacobsthal order
 	unsigned int i = 0;
 	for (; i < insertion_order.size(); i++)
-		binaryInsert(container, S, others[insertion_order[i] - JACOB_OFFSET], insertion_order[i] - JACOB_OFFSET + 2);
+		binaryInsert(container, S, others[insertion_order[i] - JACOB_OFFSET]);
 
 	//Insert remaining elements in reverse order
 	typename std::vector<iter>::iterator ot = nextElem(others.begin(), insertion_order.size());
 	while (ot != others.end())
 	{
-		binaryInsert(container, S, *ot, S.size());
+		binaryInsert(container, S, *ot);
 		ot++;
 	}
 
+	
 	// Go from heads of pairs to full pairs in main container
 	// With temporary container
 	putBackIntoContainer(container, S, level);
