@@ -62,7 +62,7 @@ int main()
 		std::cout << "Printing...\n";
 		sp.printContents();
 		
-		std::cout << "Longest et shortest span: \n";
+		std::cout << "Longest and shortest span: \n";
 		std::cout << sp.longestSpan() << std::endl;
 		std::cout << sp.shortestSpan() << std::endl;
 		
@@ -100,7 +100,7 @@ int main()
 
 		sp.printContents();
 
-		std::cout << "Longest et shortest span: \n";
+		std::cout << "Longest and shortest span: \n";
 		std::cout << sp.longestSpan() << std::endl;
 		std::cout << sp.shortestSpan() << std::endl;
 		
