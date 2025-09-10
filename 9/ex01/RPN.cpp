@@ -40,22 +40,18 @@ void RPN::calculate()
 		}
 		else if (std::isdigit(_input[i]))
 		{
+			if (_input[i + 1] && !std::isspace(_input[i + 1]))
+				throw NotADigitException();
 			_stack.push(_input[i] - 48);
 			i++;
 		}
 		else if (isOperator(_input[i]))
 		{
-			try
-			{
-				handleOperation(_input[i]);
-			}
-			catch(const std::exception& e)
-			{
-				std::cerr << e.what() << '\n';
-				return ;
-			}
+			handleOperation(_input[i]);
 			i++;
 		}
+		else
+			throw NotADigitException();
 	}
 	
 	printResult();
@@ -122,4 +118,9 @@ const char * RPN::DivideByZeroException::what() const throw()
 const char * RPN::TooManyOperandsException::what() const throw()
 {
 	return "Error: too many operands";
+}
+
+const char * RPN::NotADigitException::what() const throw()
+{
+	return "Error: Program only accepts digits between 0 and 9";
 }

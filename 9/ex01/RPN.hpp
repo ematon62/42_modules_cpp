@@ -49,6 +49,11 @@ class RPN {
 	{
 		virtual const char * what() const throw();
 	};
+
+	class NotADigitException : public std::exception
+	{
+		virtual const char * what() const throw();
+	};
 };
 
 #endif

@@ -20,8 +20,18 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
+	if (!argv[1][0]) return 0;
+
 	RPN calculator(argv[1]);
-	calculator.calculate();
+	try
+	{
+		calculator.calculate();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+		return 1;
+	}
 	
 	return 0;
 }	
