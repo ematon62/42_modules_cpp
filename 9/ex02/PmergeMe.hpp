@@ -15,6 +15,7 @@
 
 #include <deque>
 #include <vector>
+#include <utility>
 #include <algorithm>
 #include <string>
 #include <cstdlib>
@@ -49,6 +50,8 @@ class PmergeMe
 			void printDeque();
 			
 			void saveOriginalInput(int argc, char **argv);
+
+			void printIfSorted();
 			
 			void sortVector();
 			void sortDeque();
@@ -147,8 +150,7 @@ void binaryInsert(T& container, std::vector<typename T::iterator> &dest, typenam
 	(void)container;
 
     size_t left = 0;
-    size_t right = dest.size();
-
+	size_t right = dest.size();
     while (left < right) {
         std::size_t mid = left + (right - left) / 2;
         if (*dest[mid] < *elem)
@@ -203,21 +205,18 @@ void ford_johnson(T& container, int level)
     ford_johnson(container, level * 2);
 
 	fillSAndOther(container, level, nb_elems, S, others);
-	std::cout << "LEVEL: " << level << std::endl;
-	for (typename std::vector<iter>::iterator it = S.begin(); it != S.end(); it++)
-		std::cout << *(*it) << " ";
-	std::cout << std::endl;
-	for (typename std::vector<iter>::iterator it = others.begin(); it != others.end(); it++)
-		std::cout << *(*it) << " ";
-	std::cout << std::endl;
 
 	//Get order in which we insert
 	std::vector<size_t> insertion_order = generateJacobsthalOrder(others.size());
 
 	//Binary Insert elements from the pend to the main according to Jacobsthal order
 	unsigned int i = 0;
+	iter b_i;
 	for (; i < insertion_order.size(); i++)
-		binaryInsert(container, S, others[insertion_order[i] - JACOB_OFFSET]);
+	{
+		b_i = others[insertion_order[i] - JACOB_OFFSET];
+		binaryInsert(container, S, b_i);
+	}
 
 	//Insert remaining elements in reverse order
 	typename std::vector<iter>::iterator ot = nextElem(others.begin(), insertion_order.size());
@@ -226,7 +225,6 @@ void ford_johnson(T& container, int level)
 		binaryInsert(container, S, *ot);
 		ot++;
 	}
-
 	
 	// Go from heads of pairs to full pairs in main container
 	// With temporary container

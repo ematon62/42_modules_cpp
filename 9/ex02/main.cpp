@@ -48,7 +48,6 @@ static int	is_integer(char *str)
 /*
 - Only positive integers
 - No overflow
-- 
 */
 bool isValidInput(int argc, char **argv)
 {
@@ -102,9 +101,11 @@ int main(int argc, char **argv)
 	algo.printVector();
 	std::cout << std::endl;
 	
-	std::cout << std::setprecision(6);
+	//Prints out if vector and deque are sorted
+	// algo.printIfSorted();
+
 	std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector: "
-		<< getElapsedTime(start_vec, end_vec) << std::endl;
+		<< std::setprecision(10) << getElapsedTime(start_vec, end_vec) * 100000. <<  " us" << std::endl;
 	std::cout << "Time to process a range of " << argc - 1 << " elements with std::deque: "
-		<< getElapsedTime(start_deq, end_deq) << std::endl;
+		<< std::setprecision(10) << getElapsedTime(start_deq, end_deq) * 100000. << " us" << std::endl;
 }	

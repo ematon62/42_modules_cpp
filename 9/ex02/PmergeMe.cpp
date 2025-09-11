@@ -63,5 +63,11 @@ void PmergeMe::printOriginal() { printContainer(_original_values); }
 void PmergeMe::printVector() { printContainer(_vec); }
 void PmergeMe::printDeque() { printContainer(_deq); }
 
+void PmergeMe::printIfSorted()
+{
+	std::cout << "Vect is sorted? -> " << (isSorted(_vec) ? "YES" : "NO") << std::endl;
+	std::cout << "Deq is sorted? -> " << (isSorted(_deq) ? "YES" : "NO") << std::endl; 
+}
+
 void PmergeMe::sortVector() { ford_johnson(_vec, 1); }
 void PmergeMe::sortDeque() { ford_johnson(_deq, 1); }
