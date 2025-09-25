@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gross <gross@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:01:39 by gross             #+#    #+#             */
-/*   Updated: 2025/09/01 14:12:21 by gross            ###   ########.fr       */
+/*   Updated: 2025/09/25 21:11:45 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,25 @@
 #define DATABASE "data.csv"
 #define COMMA_POSITION 10
 
+struct s_date {
+	int year;
+	int day;
+	int month;
+};
+
 class BitcoinExchange {
 	private:
 		BitcoinExchange(BitcoinExchange& other);
 		BitcoinExchange& operator=(BitcoinExchange& other);
-		std::map<tm, float> data;
+		std::map<struct s_date, float> data;
 	
 		public:
 		BitcoinExchange();
 		~BitcoinExchange();
-		void printValues(std::ifstream &input);
-		void parseLine(std::string &line, tm& date, float& value);
-		void printWithClosestExchangeRate(tm date, float value);
-		bool isValidDate(tm &date);
+		void exchange(std::ifstream &input);
+		void parseLine(std::string &line, struct s_date& date, float& value);
+		void printWithClosestExchangeRate(struct s_date date, float value);
+		bool isValidYear(struct s_date &date);
 
 	class DatabaseException : public std::exception
 	{
@@ -68,6 +74,6 @@ class BitcoinExchange {
 	};
 };
 
-bool operator<(const tm date1, const tm date2);
+bool operator<(const struct s_date date1, const struct s_date date2);
 
 #endif

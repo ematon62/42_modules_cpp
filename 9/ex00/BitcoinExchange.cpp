@@ -3,53 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gross <gross@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:49:37 by gross             #+#    #+#             */
-/*   Updated: 2025/08/28 14:22:38 by gross            ###   ########.fr       */
+/*   Updated: 2025/09/25 21:44:50 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
+#include "utils.hpp"
 
-bool operator<(const tm date1, const tm date2)
+bool BitcoinExchange::isValidYear(struct s_date& date)
 {
-	return (date1.tm_year < date2.tm_year
-		|| (date1.tm_year == date2.tm_year && date1.tm_mon < date2.tm_mon)
-		|| (date1.tm_year == date2.tm_year && date1.tm_mon == date2.tm_mon && date1.tm_mday < date2.tm_mday));
-}
-
-void printDate(tm date)
-{
-	std::cout << date.tm_year << "-";
-	std::cout << std::setfill('0') << std::setw(2)  << date.tm_mon;
-	std::cout << "-";
-	std::cout << std::setfill('0') << std::setw(2) << date.tm_mday;
-}
-
-bool isValidLineFormat(std::string& line, size_t index)
-{
-	return !(index == std::string::npos || index == 0 || line[index - 1] != ' ' || line[index + 1] != ' ');
-}
-
-bool isValidDateFormat(std::string &date_str)
-{
-	return (date_str.length() == 10
-		&& (date_str[0] >= '0' && date_str[0] <= '9')
-		&& (date_str[1] >= '0' && date_str[1] <= '9')
-		&& (date_str[2] >= '0' && date_str[2] <= '9')
-		&& (date_str[3] >= '0' && date_str[3] <= '9')
-		&& date_str[4] == '-'
-		&& (date_str[5] >= '0' && date_str[5] <= '9')
-		&& (date_str[6] >= '0' && date_str[6] <= '9')
-		&& date_str[7] == '-'
-		&& (date_str[8] >= '0' && date_str[8] <= '9')
-		&& (date_str[9] >= '0' && date_str[9] <= '9'));
-}
-
-bool BitcoinExchange::isValidDate(tm& date)
-{
-	tm first_date = (*(data.begin())).first;
+	struct s_date first_date = (*(data.begin())).first;
 	return (first_date < date);
 }
 
@@ -71,10 +36,8 @@ bool isValidValue(const std::string& str, float& outValue) {
 
 BitcoinExchange::BitcoinExchange() : data()
 {
-	std::string date_str;
-	std::string value_str;
-	tm			date;
 	std::string	line;
+	struct s_date date;
 
 	std::ifstream database(DATABASE);
 	if (!database.good())
@@ -83,25 +46,23 @@ BitcoinExchange::BitcoinExchange() : data()
 	
 	while(std::getline(database, line))
 	{
-		date_str = line.substr(0, COMMA_POSITION);
-		value_str = line.substr(COMMA_POSITION + 1, line.length());		
-		strptime(date_str.c_str(), "%Y-%m-%d", &date);
-		date.tm_year += 1900;
-		date.tm_mon += 1;
-		std::pair<tm, float> new_pair(date, strtof(value_str.c_str(), NULL));
+		std::string date_str = line.substr(0, COMMA_POSITION);
+		std::string value_str = line.substr(COMMA_POSITION + 1, line.length());
+		getDateInfo(date, date_str);
+		std::pair<struct s_date, float> new_pair(date, strtof(value_str.c_str(), NULL));
 		data.insert(new_pair);
 	}
 }
 
 BitcoinExchange::~BitcoinExchange() {}
 
-void BitcoinExchange::printValues(std::ifstream& input)
+void BitcoinExchange::exchange(std::ifstream& input)
 {
 	std::string line;
-	tm			date;
+	struct s_date	date;
 	float		value;
 
-	std::getline(input, line); // Pass first line defining columns
+	std::getline(input, line);
 	while (std::getline(input, line))
 	{
 		try
@@ -116,7 +77,7 @@ void BitcoinExchange::printValues(std::ifstream& input)
 	}
 }
 
-void BitcoinExchange::parseLine(std::string &line, tm &date, float &value)
+void BitcoinExchange::parseLine(std::string &line, struct s_date &date, float &value)
 {
 	size_t		index;
 	std::string	date_str;
@@ -129,12 +90,10 @@ void BitcoinExchange::parseLine(std::string &line, tm &date, float &value)
 	}
 
 	date_str = line.substr(0, index - 1);
-	if (!isValidDateFormat(date_str))
+	if (!isValidDateString(date_str))
 		throw InvalidDateFormatException();
-	strptime(date_str.c_str(), "%Y-%m-%d", &date);
-	date.tm_year += 1900;
-	date.tm_mon += 1;
-	if (!isValidDate(date))
+	getDateInfo(date, date_str);
+	if (!isValidDateInfo(date) || !isValidYear(date))
 		throw InvalidDateException();
 	value_str = line.substr(index + 2, line.length());
 	value = strtof(value_str.c_str(), NULL);
@@ -142,13 +101,13 @@ void BitcoinExchange::parseLine(std::string &line, tm &date, float &value)
 		throw InvalidValueException();
 }
 
-void BitcoinExchange::printWithClosestExchangeRate(const tm date, float value)
+void BitcoinExchange::printWithClosestExchangeRate(struct s_date date, float value)
 {
 
 	float closest_value;
 
-	std::map<tm, float>::iterator it = data.begin();
-	std::map<tm, float>::iterator jt = it;
+	std::map<struct s_date, float>::iterator it = data.begin();
+	std::map<struct s_date, float>::iterator jt = it;
 	while (it != data.end())
 	{
 		if (date < (*it).first)
