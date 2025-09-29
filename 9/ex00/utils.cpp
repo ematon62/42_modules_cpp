@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 21:20:03 by ematon            #+#    #+#             */
-/*   Updated: 2025/09/25 21:42:51 by ematon           ###   ########.fr       */
+/*   Updated: 2025/09/29 17:24:53 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool isValidDateString(std::string& str)
 
     while (str[i + j] && str[i + j] != '-')
     {
-        if (!(str[i] >= '0' && str[i] <= '9'))
+        if (!(str[i + j] >= '0' && str[i + j] <= '9'))
             return false;
         j++;
     }
@@ -50,7 +50,7 @@ bool isValidDateString(std::string& str)
     j = 0;
     while (str[i + j] && str[i + j] != '-')
     {
-        if (!(str[i] >= '0' && str[i] <= '9'))
+        if (!(str[i + j] >= '0' && str[i + j] <= '9'))
             return false;
         j++;
     }
@@ -112,6 +112,13 @@ bool isValidDateInfo(struct s_date &date)
             return false;
     }
 
+    return true;
+}
+
+bool isValidValueString(std::string& str)
+{
+    for (size_t i = 0; i < str.size(); i++)
+        if (str[i] < '0' || str[i] > '9') return false;
     return true;
 }
 

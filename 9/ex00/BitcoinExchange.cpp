@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:49:37 by gross             #+#    #+#             */
-/*   Updated: 2025/09/25 21:44:50 by ematon           ###   ########.fr       */
+/*   Updated: 2025/09/29 17:23:34 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ void BitcoinExchange::parseLine(std::string &line, struct s_date &date, float &v
 	if (!isValidDateInfo(date) || !isValidYear(date))
 		throw InvalidDateException();
 	value_str = line.substr(index + 2, line.length());
+	if (!isValidValueString(value_str))
+		throw InvalidValueException();
 	value = strtof(value_str.c_str(), NULL);
 	if (!isValidValue(value_str, value))
 		throw InvalidValueException();

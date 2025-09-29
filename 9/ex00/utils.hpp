@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 21:20:37 by ematon            #+#    #+#             */
-/*   Updated: 2025/09/25 21:39:08 by ematon           ###   ########.fr       */
+/*   Updated: 2025/09/29 17:17:28 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,3 +19,4 @@ bool isValidDateInfo(struct s_date &date);
 void printDate(struct s_date &date);
 bool isBissextile(int year);
 bool isValidLineFormat(std::string& line, size_t index);
+bool isValidValueString(std::string& str);
