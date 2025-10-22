@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 21:20:03 by ematon            #+#    #+#             */
-/*   Updated: 2025/09/29 17:24:53 by ematon           ###   ########.fr       */
+/*   Updated: 2025/10/22 14:35:44 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void getDateInfo(struct s_date &date, std::string &str)
 
 bool isValidDateInfo(struct s_date &date)
 {
-    if (!(date.day >= 0 && date.day <= 31))
+    if (!(date.day >= 1 && date.day <= 31))
         return false;
     if (!(date.month >= 1 && date.month <= 12))
         return false;
@@ -120,13 +120,6 @@ bool isValidValueString(std::string& str)
     for (size_t i = 0; i < str.size(); i++)
         if (str[i] < '0' || str[i] > '9') return false;
     return true;
-}
-
-bool operator<(struct s_date date1, struct s_date date2)
-{
-	return (date1.year < date2.year
-		|| (date1.year == date2.year && date1.month < date2.month)
-		|| (date1.year == date2.year && date1.year == date2.month && date1.day < date2.day));
 }
 
 void printDate(struct s_date &date)

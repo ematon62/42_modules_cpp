@@ -6,13 +6,13 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:49:37 by gross             #+#    #+#             */
-/*   Updated: 2025/10/21 18:15:18 by ematon           ###   ########.fr       */
+/*   Updated: 2025/10/22 09:54:49 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.hpp"
 
-bool BitcoinExchange::isValidYear(struct s_date& date)
+bool BitcoinExchange::isValidYear(struct s_date date)
 {
 	struct s_date first_date = (*(data.begin())).first;
 	return (first_date < date);
@@ -30,7 +30,6 @@ bool isValidValue(const std::string& str, float& outValue) {
             return true;
         }
     }
-
     return false;
 }
 
@@ -49,9 +48,7 @@ BitcoinExchange::BitcoinExchange() : data()
 		std::string date_str = line.substr(0, COMMA_POSITION);
 		std::string value_str = line.substr(COMMA_POSITION + 1, line.length());
 		getDateInfo(date, date_str);
-		std::pair<struct s_date, float> new_pair(date, strtof(value_str.c_str(), NULL));
 		data[date] = strtof(value_str.c_str(), NULL);
-		std::cout << date.year << " " << date.month << " "  << date.day << "VALUE: " << data[date] << std::endl;
 	}
 }
 

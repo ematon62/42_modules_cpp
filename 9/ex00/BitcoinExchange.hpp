@@ -6,7 +6,7 @@
 /*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:01:39 by gross             #+#    #+#             */
-/*   Updated: 2025/09/25 21:11:45 by ematon           ###   ########.fr       */
+/*   Updated: 2025/10/21 18:50:32 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,20 @@ struct s_date {
 	int year;
 	int day;
 	int month;
+
+	bool operator<(const struct s_date& date2) const
+	{
+		if (this->year != date2.year) return this->year < date2.year;
+		if (this->month != date2.month) return this->month < date2.month;
+		return this->day < date2.day;
+	}
+
+	bool operator<=(const struct s_date& date2) const
+	{
+		if (this->year != date2.year) return this->year <= date2.year;
+		if (this->month != date2.month) return this->month <= date2.month;
+		return this->day <= date2.day;
+	}
 };
 
 class BitcoinExchange {
@@ -46,7 +60,7 @@ class BitcoinExchange {
 		void exchange(std::ifstream &input);
 		void parseLine(std::string &line, struct s_date& date, float& value);
 		void printWithClosestExchangeRate(struct s_date date, float value);
-		bool isValidYear(struct s_date &date);
+		bool isValidYear(struct s_date date);
 
 	class DatabaseException : public std::exception
 	{
@@ -73,7 +87,5 @@ class BitcoinExchange {
 		virtual const char* what() const throw();
 	};
 };
-
-bool operator<(const struct s_date date1, const struct s_date date2);
 
 #endif
