@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gross <gross@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:49:37 by gross             #+#    #+#             */
-/*   Updated: 2025/08/28 16:01:57 by gross            ###   ########.fr       */
+/*   Updated: 2025/10/22 15:15:48 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void RPN::calculate()
 		else if (std::isdigit(_input[i]))
 		{
 			if (_input[i + 1] && !std::isspace(_input[i + 1]))
-				throw NotADigitException();
+				throw BadFormatException();
 			_stack.push(_input[i] - 48);
 			i++;
 		}
@@ -51,7 +51,7 @@ void RPN::calculate()
 			i++;
 		}
 		else
-			throw NotADigitException();
+			throw BadFormatException();
 	}
 	
 	printResult();
@@ -120,7 +120,7 @@ const char * RPN::TooManyOperandsException::what() const throw()
 	return "Error: too many operands";
 }
 
-const char * RPN::NotADigitException::what() const throw()
+const char * RPN::BadFormatException::what() const throw()
 {
-	return "Error: Program only accepts digits between 0 and 9";
+	return "Error: bad format (single digits, operators separated by spaces)";
 }

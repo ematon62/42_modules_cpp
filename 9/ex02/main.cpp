@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gross <gross@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:25:49 by gross             #+#    #+#             */
-/*   Updated: 2025/09/06 18:24:20 by gross            ###   ########.fr       */
+/*   Updated: 2025/10/22 15:24:23 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ int main(int argc, char **argv)
 	algo.printVector();
 	std::cout << std::endl;
 	
-	//Prints out if vector and deque are sorted
+	// !!!!!!! POUR LE CORRECTEUR !!!!!!!!!!!!!!
+	// -> YES si trié, NO sinon
 	// algo.printIfSorted();
 
 	std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector: "

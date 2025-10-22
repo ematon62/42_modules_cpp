@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gross <gross@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ematon <ematon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:01:39 by gross             #+#    #+#             */
-/*   Updated: 2025/09/01 14:12:48 by gross            ###   ########.fr       */
+/*   Updated: 2025/10/22 15:14:30 by ematon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ class RPN {
 		virtual const char * what() const throw();
 	};
 
-	class NotADigitException : public std::exception
+	class BadFormatException : public std::exception
 	{
 		virtual const char * what() const throw();
 	};
